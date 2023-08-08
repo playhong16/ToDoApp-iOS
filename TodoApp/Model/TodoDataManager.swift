@@ -18,6 +18,16 @@ final class TodoDataManager {
         return todoList
     }
     
+    func getComletionList() -> [Todo] {
+        var completionList: [Todo] = []
+        for todo in todoList {
+            if todo.isCompleted {
+                completionList.append(todo)
+            }
+        }
+        return completionList
+    }
+    
     func createTodoList(todo: Todo) {
         todoList.append(todo)
     }

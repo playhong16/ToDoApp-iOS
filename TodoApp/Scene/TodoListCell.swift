@@ -8,6 +8,8 @@
 import UIKit
 
 class TodoListCell: UITableViewCell {
+    
+    static let identifier = "TodoListCell"
 
     @IBOutlet weak var todoLabel: UILabel!
     @IBOutlet weak var checkButton: UIButton!

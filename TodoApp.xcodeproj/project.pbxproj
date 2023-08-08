@@ -21,6 +21,7 @@
 		054D408B2A8108E800408AD1 /* TodoListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 054D408A2A8108E800408AD1 /* TodoListCell.swift */; };
 		054D408D2A81461B00408AD1 /* TodoDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 054D408C2A81461B00408AD1 /* TodoDataManager.swift */; };
 		054D408F2A81D87600408AD1 /* UILabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 054D408E2A81D87600408AD1 /* UILabel.swift */; };
+		054D40922A8211F600408AD1 /* CompletionListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 054D40912A8211F600408AD1 /* CompletionListCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +41,7 @@
 		054D408A2A8108E800408AD1 /* TodoListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoListCell.swift; sourceTree = "<group>"; };
 		054D408C2A81461B00408AD1 /* TodoDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoDataManager.swift; sourceTree = "<group>"; };
 		054D408E2A81D87600408AD1 /* UILabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UILabel.swift; sourceTree = "<group>"; };
+		054D40912A8211F600408AD1 /* CompletionListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompletionListCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,15 +74,15 @@
 		054D40662A80C41600408AD1 /* TodoApp */ = {
 			isa = PBXGroup;
 			children = (
-				054D40802A80C5AE00408AD1 /* Model */,
 				054D40672A80C41600408AD1 /* AppDelegate.swift */,
 				054D40692A80C41600408AD1 /* SceneDelegate.swift */,
+				054D40902A82056100408AD1 /* Extension */,
+				054D40802A80C5AE00408AD1 /* Model */,
 				054D407F2A80C59300408AD1 /* Scene */,
 				054D40812A80C5B300408AD1 /* Controller */,
 				054D40722A80C41700408AD1 /* LaunchScreen.storyboard */,
 				054D40752A80C41700408AD1 /* Info.plist */,
 				054D40702A80C41700408AD1 /* Assets.xcassets */,
-				054D408E2A81D87600408AD1 /* UILabel.swift */,
 			);
 			path = TodoApp;
 			sourceTree = "<group>";
@@ -88,10 +90,10 @@
 		054D407F2A80C59300408AD1 /* Scene */ = {
 			isa = PBXGroup;
 			children = (
+				054D40932A821B7400408AD1 /* Cell */,
 				054D406D2A80C41600408AD1 /* Main.storyboard */,
 				054D407B2A80C53300408AD1 /* TodoListScene.storyboard */,
 				054D407D2A80C59000408AD1 /* CompletionListScene.storyboard */,
-				054D408A2A8108E800408AD1 /* TodoListCell.swift */,
 			);
 			path = Scene;
 			sourceTree = "<group>";
@@ -113,6 +115,23 @@
 				054D40882A80EBA800408AD1 /* CompletionListViewController.swift */,
 			);
 			path = Controller;
+			sourceTree = "<group>";
+		};
+		054D40902A82056100408AD1 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				054D408E2A81D87600408AD1 /* UILabel.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
+		054D40932A821B7400408AD1 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				054D408A2A8108E800408AD1 /* TodoListCell.swift */,
+				054D40912A8211F600408AD1 /* CompletionListCell.swift */,
+			);
+			name = Cell;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -189,6 +208,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				054D40832A80C5E500408AD1 /* TodoListViewController.swift in Sources */,
+				054D40922A8211F600408AD1 /* CompletionListCell.swift in Sources */,
 				054D406C2A80C41600408AD1 /* ViewController.swift in Sources */,
 				054D40892A80EBA800408AD1 /* CompletionListViewController.swift in Sources */,
 				054D408D2A81461B00408AD1 /* TodoDataManager.swift in Sources */,
