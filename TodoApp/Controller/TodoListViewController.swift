@@ -7,19 +7,18 @@
 
 import UIKit
 
-class TodoListViewController: UITableViewController {
+final class TodoListViewController: UITableViewController {
     
-    var todoList: [Todo] = [
-        Todo(title: "홍식"),
-        Todo(title: "미래"),
-        Todo(title: "유진"),
-        Todo(title: "성원"),
-        Todo(title: "세령")
-    ]
+    private let todoDataManager = TodoDataManager.shared
+    
+    // MARK: - Life Cycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
     }
 
     // MARK: - Table view data source
@@ -29,61 +28,44 @@ class TodoListViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return todoList.count
+        return todoDataManager.getTodoList().count
     }
 
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-        let todo = todoList[indexPath.row]
-        cell.textLabel?.text = todo.title
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as? TodoListCell else { return UITableViewCell() }
+        let todoList = todoDataManager.getTodoList()
+        cell.todo = todoList[indexPath.row]
         return cell
     }
-
-
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
+    
+    // MARK: - Setting
+    
+    private func setupAlert() {
+        let alert = UIAlertController(title: "할 일 추가하기", message: nil, preferredStyle: .alert)
+        let cancel = UIAlertAction(title: "취소", style: .destructive)
+        let add = UIAlertAction(title: "추가", style: .default) { _ in
+            let text = alert.textFields?.first?.text
+            self.addAlertButtonTapped(text: text)
+        }
+        alert.addTextField { textField in textField.placeholder = "할 일을 입력하세요." }
+        alert.addAction(cancel)
+        alert.addAction(add)
+        present(alert, animated: true)
     }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
+    
+    private func addAlertButtonTapped(text: String?) {
+        guard let text = text else { return }
+        todoDataManager.createTodoList(todo: Todo(title: text))
+        let rowIndex = todoDataManager.getTodoList().count - 1
+        tableView.insertRows(at: [IndexPath(row: rowIndex, section: 0)], with: .automatic)
     }
-    */
+    
+    // MARK: - Action
 
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
+    @IBAction func addButtonTapped(_ sender: UIBarButtonItem) {
+        setupAlert()
     }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
+    
 
 }

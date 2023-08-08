@@ -17,6 +17,10 @@
 		054D407E2A80C59000408AD1 /* CompletionListScene.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 054D407D2A80C59000408AD1 /* CompletionListScene.storyboard */; };
 		054D40832A80C5E500408AD1 /* TodoListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 054D40822A80C5E500408AD1 /* TodoListViewController.swift */; };
 		054D40852A80C73100408AD1 /* Todo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 054D40842A80C73100408AD1 /* Todo.swift */; };
+		054D40892A80EBA800408AD1 /* CompletionListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 054D40882A80EBA800408AD1 /* CompletionListViewController.swift */; };
+		054D408B2A8108E800408AD1 /* TodoListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 054D408A2A8108E800408AD1 /* TodoListCell.swift */; };
+		054D408D2A81461B00408AD1 /* TodoDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 054D408C2A81461B00408AD1 /* TodoDataManager.swift */; };
+		054D408F2A81D87600408AD1 /* UILabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 054D408E2A81D87600408AD1 /* UILabel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +36,10 @@
 		054D407D2A80C59000408AD1 /* CompletionListScene.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CompletionListScene.storyboard; sourceTree = "<group>"; };
 		054D40822A80C5E500408AD1 /* TodoListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoListViewController.swift; sourceTree = "<group>"; };
 		054D40842A80C73100408AD1 /* Todo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Todo.swift; sourceTree = "<group>"; };
+		054D40882A80EBA800408AD1 /* CompletionListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompletionListViewController.swift; sourceTree = "<group>"; };
+		054D408A2A8108E800408AD1 /* TodoListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoListCell.swift; sourceTree = "<group>"; };
+		054D408C2A81461B00408AD1 /* TodoDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoDataManager.swift; sourceTree = "<group>"; };
+		054D408E2A81D87600408AD1 /* UILabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UILabel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,6 +80,7 @@
 				054D40722A80C41700408AD1 /* LaunchScreen.storyboard */,
 				054D40752A80C41700408AD1 /* Info.plist */,
 				054D40702A80C41700408AD1 /* Assets.xcassets */,
+				054D408E2A81D87600408AD1 /* UILabel.swift */,
 			);
 			path = TodoApp;
 			sourceTree = "<group>";
@@ -82,6 +91,7 @@
 				054D406D2A80C41600408AD1 /* Main.storyboard */,
 				054D407B2A80C53300408AD1 /* TodoListScene.storyboard */,
 				054D407D2A80C59000408AD1 /* CompletionListScene.storyboard */,
+				054D408A2A8108E800408AD1 /* TodoListCell.swift */,
 			);
 			path = Scene;
 			sourceTree = "<group>";
@@ -90,6 +100,7 @@
 			isa = PBXGroup;
 			children = (
 				054D40842A80C73100408AD1 /* Todo.swift */,
+				054D408C2A81461B00408AD1 /* TodoDataManager.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -99,6 +110,7 @@
 			children = (
 				054D406B2A80C41600408AD1 /* ViewController.swift */,
 				054D40822A80C5E500408AD1 /* TodoListViewController.swift */,
+				054D40882A80EBA800408AD1 /* CompletionListViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -178,7 +190,11 @@
 			files = (
 				054D40832A80C5E500408AD1 /* TodoListViewController.swift in Sources */,
 				054D406C2A80C41600408AD1 /* ViewController.swift in Sources */,
+				054D40892A80EBA800408AD1 /* CompletionListViewController.swift in Sources */,
+				054D408D2A81461B00408AD1 /* TodoDataManager.swift in Sources */,
+				054D408F2A81D87600408AD1 /* UILabel.swift in Sources */,
 				054D40682A80C41600408AD1 /* AppDelegate.swift in Sources */,
+				054D408B2A8108E800408AD1 /* TodoListCell.swift in Sources */,
 				054D406A2A80C41600408AD1 /* SceneDelegate.swift in Sources */,
 				054D40852A80C73100408AD1 /* Todo.swift in Sources */,
 			);
