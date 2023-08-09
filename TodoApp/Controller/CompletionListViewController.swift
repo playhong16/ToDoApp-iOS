@@ -7,7 +7,7 @@
 
 import UIKit
 
-class CompletionListViewController: UIViewController {
+final class CompletionListViewController: UIViewController {
     
     private let todoDataManger = TodoDataManager.shared
     @IBOutlet weak var tableView: UITableView!
@@ -16,7 +16,6 @@ class CompletionListViewController: UIViewController {
         super.viewDidLoad()
         tableView.dataSource = self
     }
-    
 }
 
 // MARK: - Extension

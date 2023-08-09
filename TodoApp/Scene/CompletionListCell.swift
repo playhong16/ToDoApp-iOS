@@ -7,7 +7,7 @@
 
 import UIKit
 
-class CompletionListCell: UITableViewCell {
+final class CompletionListCell: UITableViewCell {
     
     static let identifier = "CompletionListCell"
     
@@ -18,19 +18,8 @@ class CompletionListCell: UITableViewCell {
             setupData()
         }
     }
-
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-    }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
-    }
     
-    func setupData() {
+    private func setupData() {
         completionTodoLabel.text = completionTodo?.title
     }
 

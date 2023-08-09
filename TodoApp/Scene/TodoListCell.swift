@@ -7,7 +7,7 @@
 
 import UIKit
 
-class TodoListCell: UITableViewCell {
+final class TodoListCell: UITableViewCell {
     
     static let identifier = "TodoListCell"
 
@@ -23,9 +23,9 @@ class TodoListCell: UITableViewCell {
     // MARK: - Setting
 
     private func setupData() {
-        guard let todo = self.todo else { return }
+        guard let todo else { return }
         todoLabel.text = todo.title
-        todo.isCompleted ?  setupCompletedCheckButton() : setupCheckButton()
+        todo.isCompleted ? setupCompletedCheckButton() : setupCheckButton()
     }
     
     private func setupCheckButton() {

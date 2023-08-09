@@ -16,14 +16,11 @@ final class TodoListViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
     }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-    }
 
     // MARK: - Table view data source
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        print(#function)
         return todoDataManager.getTodoList().count
     }
 
@@ -60,21 +57,34 @@ final class TodoListViewController: UITableViewController {
         }
         alert.addAction(cancel)
         alert.addAction(add)
-        alert.addTextField { textField in textField.placeholder = "할 일을 입력하세요." }
+        alert.addTextField { textField in textField.placeholder = "할 일을 입력하세요."
+            textField.delegate = self
+        }
     }
     
     private func addAlertButtonTapped(text: String?) {
         guard let text = text else { return }
-        todoDataManager.createTodoList(todo: Todo(title: text))
-        let rowIndex = todoDataManager.getTodoList().count - 1
-        tableView.insertRows(at: [IndexPath(row: rowIndex, section: 0)], with: .automatic)
+        todoDataManager.createTodoList(todo: Todo(title: text, textContent: nil, priority: .high))
+        let row = todoDataManager.getTodoList().count - 1
+        tableView.insertRows(at: [IndexPath(row: row, section: 0)], with: .automatic)
     }
+    
+
     
     // MARK: - Action
 
     @IBAction func addButtonTapped(_ sender: UIBarButtonItem) {
         setupAlert()
     }
-    
 
+}
+
+extension TodoListViewController: UITextFieldDelegate {
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        guard let text = textField.text else { return false }
+        if text.count > 10 {
+            return false
+        }
+        return true
+    }
 }
