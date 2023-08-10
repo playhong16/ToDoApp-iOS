@@ -32,6 +32,12 @@ final class TodoDataManager {
         todoList.append(todo)
     }
     
+    func updateTodoList(index: Int, todo: Todo) {
+        todoList[index].title = todo.title
+        todoList[index].textContent = todo.textContent
+        todoList[index].priority = todo.priority
+    }
+    
     func deleteTodoList(index: Int) {
         todoList.remove(at: index)
     }

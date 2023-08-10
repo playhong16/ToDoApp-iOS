@@ -25,7 +25,7 @@ class TodayListCell: UITableViewCell {
         guard let todo else { return }
         taskLabel.text = todo.title
         todo.isCompleted ? setUnCompletedTask() : setCompletedTask()
-        setDividerColor(priority: todo.priority ?? .medium)
+        setDividerColor(priority: todo.priority)
     }
     
     func setCompletedTask() {
@@ -33,41 +33,41 @@ class TodayListCell: UITableViewCell {
         taskLabel.textColor = .black
         completionButton.setImage(UIImage(systemName: "square"), for: .normal)
         taskLabel.strikethrough(from: taskLabel.text, at: 0)
-        divider.backgroundColor = .green
-        todo.isCompleted = false
+        setDividerColor(priority: todo.priority)
     }
     
     func setUnCompletedTask() {
-        guard let todo = self.todo else { return }
         taskLabel.textColor = .gray
         completionButton.setImage(UIImage(systemName: "checkmark.square.fill"), for: .normal)
         taskLabel.strikethrough(from: taskLabel.text, at: taskLabel.text?.count)
-        setDividerColor(priority: todo.priority ?? .complete)
-        setCompletionButton()
-        todo.isCompleted = true
+        setDividerColor(priority: .complete)
     }
     
     func setDividerColor(priority: TodoPriority) {
         switch priority {
         case .high:
-            divider.backgroundColor = .red
+            divider.backgroundColor = priority.color
+            completionButton.tintColor = priority.color
         case .medium:
-            divider.backgroundColor = .orange
-        default:
-            print("에러")
+            divider.backgroundColor = priority.color
+            completionButton.tintColor = priority.color
+        case .low:
+            divider.backgroundColor = priority.color
+            completionButton.tintColor = priority.color
+        case .complete:
+            divider.backgroundColor = priority.color
+            completionButton.tintColor = priority.color
         }
-    }
-    
-    func setCompletionButton() {
-        completionButton.tintColor = .orange
     }
 
     @IBAction func completionButtonTapped(_ sender: UIButton) {
         guard let todo else { return }
         todo.isCompleted ? setCompletedTask() : setUnCompletedTask()
+        todo.isCompleted.toggle()
     }
     
     
     @IBAction func deleteButtonTapped(_ sender: UIButton) {
+        
     }
 }

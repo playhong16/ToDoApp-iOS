@@ -11,9 +11,9 @@ final class Todo {
     var title: String
     var textContent: String?
     var isCompleted = false
-    var priority: TodoPriority?
+    var priority: TodoPriority = .medium
     
-    init(title: String, textContent: String?, isCompleted: Bool = false, priority: TodoPriority?) {
+    init(title: String, textContent: String?, isCompleted: Bool = false, priority: TodoPriority = .medium) {
         self.title = title
         self.textContent = textContent
         self.isCompleted = isCompleted
