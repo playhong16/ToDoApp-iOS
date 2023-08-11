@@ -14,13 +14,6 @@ final class Todo {
     var priority: TodoPriority = .medium
     var date: Date
     
-    var dateString: String? {
-        let myFormatter = DateFormatter()
-        myFormatter.dateFormat = "yyyy-MM-dd"
-        let savedDateString = myFormatter.string(from: date)
-        return savedDateString
-    }
-    
     init(title: String, textContent: String?, isCompleted: Bool = false, priority: TodoPriority = .medium, date: Date = Date()) {
         self.title = title
         self.textContent = textContent
