@@ -13,7 +13,6 @@ final class TodayViewController: UIViewController {
     
     // MARK: - Interface Builder Outlet
 
-    
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var footerView: UIView!
@@ -22,10 +21,11 @@ final class TodayViewController: UIViewController {
 
     // MARK: - Life Cycle
 
+    /// 뷰가 로드되면 실행됩니다.
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.dataSource = self
-        tableView.delegate = self
+        tableView.dataSource = self /// 테이블 뷰의 데이터를 관리하기 위해 권한을 위임받습니다.
+        tableView.delegate = self /// 테이블 뷰의 이벤트를 처리 할 수 있도록 권한을 위임받습니다.
         setConfigureButton()
         setDateFomat()
     }
@@ -82,10 +82,12 @@ final class TodayViewController: UIViewController {
 // MARK: - Table View Data Source
 
 extension TodayViewController: UITableViewDataSource {
+    /// 테이블 뷰의 섹션안에서 행(Cell)을 몇 개 사용할지 테이블 뷰에게 알려줍니다.
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return todoDataManager.getTodoList().count
     }
     
+    /// 재사용하려는 셀이 무엇인지 테이블 뷰에게 알려줍니다.
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: Identifier.Cell.todayList,
                                                        for: indexPath) as? TodayListCell else { return UITableViewCell() }
@@ -100,18 +102,20 @@ extension TodayViewController: UITableViewDataSource {
 // MARK: - Table View Delegate
 
 extension TodayViewController: UITableViewDelegate {
+    /// 테이블 뷰의 행(Cell)을 선택하면 실행합니다.
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let todo = todoDataManager.getTodoList()[indexPath.row]
         performSegue(withIdentifier: "toDetailTodo", sender: todo)
     }
     
+    /// 테이블 뷰 행(Cell)의 trailing 끝에 표시하려는 스와이프 동작을 나타냅니다.
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        let delete = UIContextualAction(style: .normal, title: "삭제") { (action, view, completionHandler) in
+        let delete = UIContextualAction(style: .normal, title: Title.delete) { (action, view, completionHandler) in
             self.todoDataManager.deleteTodoList(index: indexPath.row)
             tableView.deleteRows(at: [IndexPath(row: indexPath.row, section: 0)], with: .automatic)
         }
         delete.backgroundColor = .red
-        delete.title = "삭제"
+        delete.title = Title.delete
         return UISwipeActionsConfiguration(actions: [delete])
     }
 }

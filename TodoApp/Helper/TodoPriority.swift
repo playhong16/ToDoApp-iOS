@@ -7,6 +7,7 @@
 
 import UIKit
 
+/// [todo] 객체의 중요도를 분류하기 위해 사용합니다.
 enum TodoPriority {
     case high
     case medium
@@ -16,7 +17,7 @@ enum TodoPriority {
     var color: UIColor {
         switch self {
         case .high:
-            return UIColor.customOrange
+            return UIColor.customRed
         case .medium:
             return UIColor.customYellow
         case .low:

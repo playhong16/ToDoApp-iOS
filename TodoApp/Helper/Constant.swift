@@ -5,7 +5,11 @@
 //  Created by playhong on 2023/08/11.
 //
 
-import UIKit
+import Foundation
+
+enum Title {
+    static let delete = "삭제"
+}
 
 enum Placeholder {
     static let textField = "할 일을 입력하세요."
