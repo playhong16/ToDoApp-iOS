@@ -9,8 +9,6 @@ import UIKit
 
 final class CompletionListCell: UITableViewCell {
     
-    static let identifier = "CompletionListCell"
-    
     @IBOutlet weak var completionTodoLabel: UILabel!
     
     var completionTodo: Todo? {

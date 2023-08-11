@@ -135,6 +135,7 @@
                         <outlet property="highPriorityButton" destination="okG-TM-Gos" id="M0l-a4-3AF"/>
                         <outlet property="lowPriorityButton" destination="UCW-bs-fmg" id="zye-ft-Jec"/>
                         <outlet property="mediumPriorityButton" destination="b1K-vX-ffB" id="IWd-m1-06C"/>
+                        <outlet property="navigationBar" destination="uPs-x9-Gyw" id="5EF-za-keG"/>
                         <outlet property="textField" destination="rbQ-r4-YSB" id="Bmb-Im-nN1"/>
                         <outlet property="textView" destination="6Kx-oc-Qf1" id="PPq-15-b6J"/>
                         <outletCollection property="priorityButtons" destination="okG-TM-Gos" collectionClass="NSMutableArray" id="Ggi-hC-HFN"/>

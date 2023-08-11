@@ -12,11 +12,21 @@ final class Todo {
     var textContent: String?
     var isCompleted = false
     var priority: TodoPriority = .medium
+    var date: Date
     
-    init(title: String, textContent: String?, isCompleted: Bool = false, priority: TodoPriority = .medium) {
+    var dateString: String? {
+        let myFormatter = DateFormatter()
+        myFormatter.dateFormat = "yyyy-MM-dd"
+        let savedDateString = myFormatter.string(from: date)
+        return savedDateString
+    }
+    
+    init(title: String, textContent: String?, isCompleted: Bool = false, priority: TodoPriority = .medium, date: Date = Date()) {
         self.title = title
         self.textContent = textContent
         self.isCompleted = isCompleted
         self.priority = priority
+        self.date = date
     }
+    
 }

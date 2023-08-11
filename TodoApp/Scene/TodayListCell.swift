@@ -8,9 +8,6 @@
 import UIKit
 
 class TodayListCell: UITableViewCell {
-    
-    static let identifier = "TodayListCell"
-    
     @IBOutlet weak var completionButton: UIButton!
     @IBOutlet weak var divider: UIView!
     @IBOutlet weak var taskLabel: UILabel!
@@ -24,23 +21,22 @@ class TodayListCell: UITableViewCell {
     func setTodoData() {
         guard let todo else { return }
         taskLabel.text = todo.title
-        todo.isCompleted ? setUnCompletedTask() : setCompletedTask()
-        setDividerColor(priority: todo.priority)
+        todo.isCompleted ? setCompletedTask() : setUnCompletedTask()
     }
     
     func setCompletedTask() {
-        guard let todo = self.todo else { return }
-        taskLabel.textColor = .black
-        completionButton.setImage(UIImage(systemName: "square"), for: .normal)
-        taskLabel.strikethrough(from: taskLabel.text, at: 0)
-        setDividerColor(priority: todo.priority)
+        taskLabel.textColor = .gray
+        completionButton.setImage(UIImage.completionButtonImage, for: .normal)
+        taskLabel.strikethrough(from: taskLabel.text, at: taskLabel.text?.count)
+        setDividerColor(priority: .complete)
     }
     
     func setUnCompletedTask() {
-        taskLabel.textColor = .gray
-        completionButton.setImage(UIImage(systemName: "checkmark.square.fill"), for: .normal)
-        taskLabel.strikethrough(from: taskLabel.text, at: taskLabel.text?.count)
-        setDividerColor(priority: .complete)
+        guard let todo = self.todo else { return }
+        taskLabel.textColor = .black
+        completionButton.setImage(UIImage.unComletionButtonImage, for: .normal)
+        taskLabel.strikethrough(from: taskLabel.text, at: 0)
+        setDividerColor(priority: todo.priority)
     }
     
     func setDividerColor(priority: TodoPriority) {
@@ -60,14 +56,14 @@ class TodayListCell: UITableViewCell {
         }
     }
 
-    @IBAction func completionButtonTapped(_ sender: UIButton) {
-        guard let todo else { return }
-        todo.isCompleted ? setCompletedTask() : setUnCompletedTask()
-        todo.isCompleted.toggle()
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        taskLabel.strikethrough(from: taskLabel.text, at: 0)
     }
     
-    
-    @IBAction func deleteButtonTapped(_ sender: UIButton) {
-        
+    @IBAction func completionButtonTapped(_ sender: UIButton) {
+        guard let todo else { return }
+        todo.isCompleted ? setUnCompletedTask() : setCompletedTask()
+        todo.isCompleted.toggle()
     }
 }

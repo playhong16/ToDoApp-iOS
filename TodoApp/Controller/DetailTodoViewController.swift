@@ -10,7 +10,9 @@ import UIKit
 final class DetailTodoViewController: UIViewController {
     
     // MARK: - Interface Builder Outlet
-
+    
+    @IBOutlet weak var navigationBar: UINavigationBar!
+    
     @IBOutlet weak var textField: UITextField!
     @IBOutlet weak var textView: UITextView!
     
@@ -47,9 +49,9 @@ final class DetailTodoViewController: UIViewController {
             textView.textColor = .black
             setPriorityColor(priority: todo.priority)
         } else {
-            textView.text = "내용을 입력해주세요."
+            textView.text = Placeholder.textView
             textView.textColor = .lightGray
-            textField.placeholder = "내용을 입력해주세요."
+            textField.placeholder = Placeholder.textField
             setPriorityColor(priority: .medium)
         }
     }
@@ -65,7 +67,7 @@ final class DetailTodoViewController: UIViewController {
         }
     }
     
-    /// 텍스트뷰의 기본 구성을 설정합니다.
+    /// textView 의 기본 구성을 설정합니다.
     private func setConfigureTextView() {
         textView.layer.masksToBounds = true
         textView.layer.cornerRadius = 10
@@ -123,13 +125,27 @@ final class DetailTodoViewController: UIViewController {
         lowPriorityButton.tintColor = .white
     }
     
-    // MARK: - Task on incoming todo data
-    
-    /// saveButton 동작을 설정합니다.
-    private func setSaveButtonAction() {
-        if let todo { update(todo: todo) }
-        else { addTodo() }
+    /// 중요도 버튼을 눌렀을 때 tag 를 확인하고, 버튼의 색깔을 중요도에 맞게 설정합니다.
+    @IBAction func priorityButtonTapped(sender: UIButton) {
+        switch sender.tag {
+        case 0:
+            priority = .high
+            setClearPriorityColor()
+            setPriorityColor(priority: priority)
+        case 1:
+            priority = .medium
+            setClearPriorityColor()
+            setPriorityColor(priority: priority)
+        case 2:
+            priority = .low
+            setClearPriorityColor()
+            setPriorityColor(priority: priority)
+        default:
+            priority = .complete
+        }
     }
+    
+    // MARK: - Task on incoming todo data
     
     /// todo 데이터를 전달받은 경우 실행합니다.
     private func update(todo: Todo) {
@@ -147,29 +163,15 @@ final class DetailTodoViewController: UIViewController {
         todoDataManager.createTodoList(todo: todo)
         performSegue(withIdentifier: "todoDidCreate", sender: nil)
     }
-    
-    // MARK: - Interface Builder Action
-    
-    /// 중요도 버튼을 눌렀을 때 tag 를 확인하고, 버튼의 색깔을 중요도에 맞게 설정합니다.
-    @IBAction func priorityButtonTapped(sender: UIButton) {
-        switch sender.tag {
-        case 0:
-            priority = .high
-            setClearPriorityColor()
-            setPriorityColor(priority: priority)
-        case 1:
-            priority = .medium
-            setClearPriorityColor()
-            setPriorityColor(priority: priority)
-        case 2:
-            priority = .low
-            setClearPriorityColor()
-            setPriorityColor(priority: priority)
-        default:
-            return
-        }
+
+    /// saveButton 동작을 설정합니다.
+    private func setSaveButtonAction() {
+        if let todo { update(todo: todo) }
+        else { addTodo() }
     }
     
+    // MARK: - Button Tapped
+
     /// '저장' 버튼을 누르면 동작합니다.
     /// - '제목'이 비어있으면, 저장하지 않고 '취소' 버튼이 눌린 것과 동일하게 동작합니다.
     @IBAction func saveButtonTapped(_ sender: UIBarButtonItem) {
@@ -182,7 +184,7 @@ final class DetailTodoViewController: UIViewController {
 
 extension DetailTodoViewController: UITextViewDelegate {
     func textViewDidBeginEditing(_ textView: UITextView) {
-        if textView.text == "내용을 입력해주세요." {
+        if textView.text == Placeholder.textView {
             textView.text = nil
             textView.textColor = .black
         }
@@ -190,7 +192,7 @@ extension DetailTodoViewController: UITextViewDelegate {
     
     func textViewDidEndEditing(_ textView: UITextView) {
         if textView.text.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
-            textView.text = "내용을 입력해주세요."
+            textView.text = Placeholder.textView
             textView.textColor = .lightGray
         }
     }

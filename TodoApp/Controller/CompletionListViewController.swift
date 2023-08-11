@@ -10,11 +10,17 @@ import UIKit
 final class CompletionListViewController: UIViewController {
     
     private let todoDataManger = TodoDataManager.shared
+    
     @IBOutlet weak var tableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.dataSource = self
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        tableView.reloadData()
+        super.viewWillAppear(animated)
     }
 }
 
@@ -28,7 +34,7 @@ extension CompletionListViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: CompletionListCell.identifier, for: indexPath) as? CompletionListCell else { return UITableViewCell() }
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: Identifier.Cell.CompletionList, for: indexPath) as? CompletionListCell else { return UITableViewCell() }
         let completionTodoList = todoDataManger.getComletionList()
         cell.completionTodo = completionTodoList[indexPath.row]
         return cell
