@@ -31,26 +31,28 @@ final class TodayListCell: UITableViewCell {
     private func setTodoData() {
         guard let todo = self.todo else { return }
         taskLabel.text = todo.title
-        todo.isCompleted ? setCompletedTask() : setUnCompletedTask()
+        todo.isCompleted ? setCompletedTodo() : setUnCompletedTodo()
     }
     
     /// [todo] 객체가 [isCompleted == true] 인 경우 동작합니다.
-    private func setCompletedTask() {
+    private func setCompletedTodo() {
         taskLabel.textColor = .lightGray
         completionButton.setImage(UIImage.completionButtonImage, for: .normal)
         taskLabel.strikethrough(from: taskLabel.text, at: taskLabel.text?.count)
         setDividerColor(priority: .complete)
-        setCompletedTimeFormat()
+        completedTimeLabel.text = "완료 시간: \(setCompletedTimeFormat())"
+        todo?.completedTime = setCompletedTimeFormat()
     }
     
     /// [todo] 객체가 [isCompleted == false] 인 경우 동작합니다.
-    private func setUnCompletedTask() {
+    private func setUnCompletedTodo() {
         guard let todo = self.todo else { return }
         taskLabel.textColor = .black
         completionButton.setImage(UIImage.unComletionButtonImage, for: .normal)
         taskLabel.strikethrough(from: taskLabel.text, at: 0)
         setDividerColor(priority: todo.priority)
         completedTimeLabel.text = ""
+        todo.completedTime = nil
     }
     
     
@@ -73,12 +75,12 @@ final class TodayListCell: UITableViewCell {
     }
     
     /// 오늘 날짜를 입력받아서 원하는 문자열 포맷으로 변경하고 [completedTimeLabel.text]을 설정합니다.
-    private func setCompletedTimeFormat() {
+    private func setCompletedTimeFormat() -> String {
         let date = Date()
         let formatter = DateFormatter()
         formatter.dateFormat = DateFormat.completedTime
         let dateToString = formatter.string(from: date)
-        completedTimeLabel.text = "완료 시간: \(dateToString)"
+        return dateToString
     }
     
     // MARK: - Cell
@@ -94,7 +96,7 @@ final class TodayListCell: UITableViewCell {
     /// [completionButton] 을 누르면 동작합니다.
     @IBAction func completionButtonTapped(_ sender: UIButton) {
         guard let todo else { return }
-        todo.isCompleted ? setUnCompletedTask() : setCompletedTask()
+        todo.isCompleted ? setUnCompletedTodo() : setCompletedTodo()
         todo.isCompleted.toggle()
     }
     

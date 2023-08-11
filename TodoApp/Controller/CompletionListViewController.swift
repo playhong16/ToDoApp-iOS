@@ -21,6 +21,10 @@ final class CompletionListViewController: UIViewController {
     /// [View]가 로드되면 실행됩니다.
     override func viewDidLoad() {
         super.viewDidLoad()
+        configureTableView()
+    }
+    
+    private func configureTableView() {
         tableView.dataSource = self /// 테이블 뷰의 데이터를 관리하기 위해 권한을 위임받습니다.
     }
     

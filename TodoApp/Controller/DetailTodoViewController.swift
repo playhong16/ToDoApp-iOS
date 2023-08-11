@@ -11,7 +11,7 @@ final class DetailTodoViewController: UIViewController {
     
     // MARK: - Interface Builder Outlet
     
-    @IBOutlet weak var navigationBar: UINavigationBar!
+    @IBOutlet var rightBarButtonItem: UIBarButtonItem!
     
     @IBOutlet weak var textField: UITextField!
     @IBOutlet weak var textView: UITextView!
@@ -38,11 +38,43 @@ final class DetailTodoViewController: UIViewController {
     /// 뷰가 로드되면 실행됩니다.
     override func viewDidLoad() {
         super.viewDidLoad()
-        textView.delegate = self /// 테이블 뷰의 이벤트를 처리 할 수 있도록 권한을 위임받습니다.
-        setConfigureButton()
-        setConfigureTextView()
-        setConfigureTextField()
+        configureUI()
         setTodoData()
+    }
+    
+    // MARK: - Configure UI
+    
+    private func configureUI() {
+        configureButton()
+        configureTextView()
+        configureTextField()
+    }
+
+    /// [priorityButtons]의 기본 구성을 설정합니다.
+    private func configureButton() {
+        for button in priorityButtons {
+            button.layer.masksToBounds = true
+            button.layer.cornerRadius = 10
+            button.layer.borderWidth = 1
+            button.layer.borderColor = UIColor.buttonBorderColor.cgColor 
+        }
+    }
+    
+    /// [textView]의 기본 구성을 설정합니다.
+    private func configureTextView() {
+        textView.delegate = self /// 테이블 뷰의 이벤트를 처리 할 수 있도록 권한을 위임받습니다.
+        textView.layer.masksToBounds = true
+        textView.layer.cornerRadius = 10
+        textView.layer.borderWidth = 1
+        textView.layer.borderColor = UIColor.buttonBorderColor.cgColor
+    }
+    
+    /// [texField]을 구성합니다.
+    private func configureTextField() {
+        textField.layer.masksToBounds = true
+        textField.layer.cornerRadius = 10
+        textField.layer.borderWidth = 1
+        textField.layer.borderColor = UIColor.buttonBorderColor.cgColor
     }
     
     // MARK: - Setting
@@ -55,38 +87,11 @@ final class DetailTodoViewController: UIViewController {
             textView.textColor = .black
             setPriorityColor()
         } else {
-            textView.text = "내용을 입력하세요."
+            textView.text = Placeholder.textView
             textView.textColor = .lightGray
             textField.placeholder = Placeholder.textField
             setPriorityColor()
         }
-    }
-
-    
-    /// [priorityButtons]의 기본 구성을 설정합니다.
-    private func setConfigureButton() {
-        for button in priorityButtons {
-            button.layer.masksToBounds = true
-            button.layer.cornerRadius = 10
-            button.layer.borderWidth = 1
-            button.layer.borderColor = UIColor.buttonBorderColor.cgColor 
-        }
-    }
-    
-    /// [textView]의 기본 구성을 설정합니다.
-    private func setConfigureTextView() {
-        textView.layer.masksToBounds = true
-        textView.layer.cornerRadius = 10
-        textView.layer.borderWidth = 1
-        textView.layer.borderColor = UIColor.buttonBorderColor.cgColor
-    }
-    
-    /// [texField]의 기본 구성을 설정합니다.
-    private func setConfigureTextField() {
-        textField.layer.masksToBounds = true
-        textField.layer.cornerRadius = 10
-        textField.layer.borderWidth = 1
-        textField.layer.borderColor = UIColor.buttonBorderColor.cgColor
     }
     
     /// [priority] 의 케이스에 따라 버튼의 색깔을 변경할 수 있도록 설정합니다.
@@ -116,19 +121,22 @@ final class DetailTodoViewController: UIViewController {
     /// highPriorityButton(높음) 의 색깔을 설정합니다.
     private func setHighPriorityButton() {
         highPriorityButton.backgroundColor = priority.color
-        highPriorityButton.tintColor = .white
+        highPriorityButton.tintColor = .buttonDefaultTintColor
+        rightBarButtonItem.tintColor = priority.color
     }
     
     /// [mediumPriorityButton(중간)] 의 색깔을 설정합니다.
     private func setMediumPriorityButton() {
         mediumPriorityButton.backgroundColor = priority.color
-        mediumPriorityButton.tintColor = .white
+        mediumPriorityButton.tintColor = .buttonDefaultTintColor
+        rightBarButtonItem.tintColor = priority.color
     }
     
     /// [lowPriorityButton(낮음)] 의 색깔을 설정합니다.
     private func setLowPriorityButton() {
         lowPriorityButton.backgroundColor = priority.color
-        lowPriorityButton.tintColor = .white
+        lowPriorityButton.tintColor = .buttonDefaultTintColor
+        rightBarButtonItem.tintColor = priority.color
     }
     
     /// [priorityButtons]를 눌렀을 때 버튼의 [tag] 를 확인하고, 버튼의 색깔을 [priority]에 맞게 설정합니다.
@@ -154,12 +162,12 @@ final class DetailTodoViewController: UIViewController {
     // MARK: - Task on incoming todo data
     
     /// [todo] 객체를 전달받은 경우 [todo] 객체를 수정하는 경우 실행합니다.
-    private func update(todo: Todo) {
+    private func update(_ todo: Todo) {
         guard let text = textField.text else { return }
         todo.title = text
         todo.textContent = textView.text
         todo.priority = self.priority
-        performSegue(withIdentifier: "todoDidUpdate", sender: todo)
+        performSegue(withIdentifier: Identifier.UnwindSegue.updateFromDetailTodoScene, sender: todo)
     }
     
     /// [todo] 객체를 전달받지 못하고, [todo] 객체를 새로 생성하는 경우 실행합니다.
@@ -167,12 +175,12 @@ final class DetailTodoViewController: UIViewController {
         guard let text = textField.text else { return }
         let todo = Todo(title: text, textContent: textView.text, priority: self.priority)
         todoDataManager.createTodoList(todo: todo)
-        performSegue(withIdentifier: "todoDidCreate", sender: nil)
+        performSegue(withIdentifier: Identifier.UnwindSegue.createFromDetailTodoScene, sender: nil)
     }
 
     /// [todo] 객체의 존재 여부에 따라 [saveButton]의 동작을 설정합니다.
     private func setSaveButtonAction() {
-        if let todo { update(todo: todo) }
+        if let todo { update(todo) }
         else { addTodo() }
     }
     
@@ -182,7 +190,13 @@ final class DetailTodoViewController: UIViewController {
     /// - '제목'이 비어있으면, 저장하지 않고 '취소' 버튼이 눌린 것과 동일하게 동작합니다.
     @IBAction func saveButtonTapped(_ sender: UIBarButtonItem) {
         guard let isEmpty = textField.text?.isEmpty else { return }
-        isEmpty ? performSegue(withIdentifier: "cancel", sender: nil) : setSaveButtonAction()
+        isEmpty ? performSegue(withIdentifier: Identifier.UnwindSegue.cancelFromDetailTodoScene, sender: nil) : setSaveButtonAction()
+    }
+    
+    // MARK: - Other
+
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        view.endEditing(true)
     }
 }
 

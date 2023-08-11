@@ -14,6 +14,10 @@ extension UIColor {
     static let customYellow = UIColor(red: 255/255, green: 214/255, blue: 112/255, alpha: 1)
     static let customGreen = UIColor(red: 153/255, green: 217/255, blue: 140/255, alpha: 1)
     
-    /// UIButton 들의 테두리 색깔입니다.
+    // MARK: - Button
+
+    /// Button의 테두리 색깔입니다.
     static let buttonBorderColor = UIColor.lightGray
+    /// Button의 기본 TintColor 입니다.
+    static let buttonDefaultTintColor = UIColor.white
 }
