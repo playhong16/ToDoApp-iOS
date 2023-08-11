@@ -31,3 +31,8 @@ enum Identifier {
         
     }
 }
+
+enum DateFormat {
+    static let date = "yyyy-MM-dd"
+    static let completedTime = "HH시 mm분"
+}

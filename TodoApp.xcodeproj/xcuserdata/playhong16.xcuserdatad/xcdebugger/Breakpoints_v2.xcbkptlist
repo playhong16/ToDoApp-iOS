@@ -8,7 +8,7 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "E52E1296-E575-4EAE-84C3-2A06DB0EC7CB"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TodoApp/Scene/CompletionListCell.swift"
@@ -538,6 +538,21 @@
                   endingLineNumber = "89"
                   offsetFromSymbolStart = "632">
                </Location>
+               <Location
+                  uuid = "31439288-30B4-42F8-989E-D580F791FCBF - a10d38eec2a0202f"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "TodoApp.TodayViewController.tableView(_: __C.UITableView, cellForRowAt: Foundation.IndexPath) -&gt; __C.UITableViewCell"
+                  moduleName = "TodoApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/playhong16/Desktop/nbc_project/TodoApp/TodoApp/Controller/TodayViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "99"
+                  endingLineNumber = "99"
+                  offsetFromSymbolStart = "596">
+               </Location>
             </Locations>
          </BreakpointContent>
       </BreakpointProxy>
@@ -618,6 +633,22 @@
             startingLineNumber = "34"
             endingLineNumber = "34"
             landmarkName = "setTodoData()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "606A709C-C51B-4F62-B924-7F99C597CFDF"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "TodoApp/Controller/TodayViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "99"
+            endingLineNumber = "99"
+            landmarkName = "tableView(_:cellForRowAt:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

@@ -36,11 +36,11 @@ final class TodayListCell: UITableViewCell {
     
     /// [todo] 객체가 [isCompleted == true] 인 경우 동작합니다.
     private func setCompletedTask() {
-        taskLabel.textColor = .gray
+        taskLabel.textColor = .lightGray
         completionButton.setImage(UIImage.completionButtonImage, for: .normal)
         taskLabel.strikethrough(from: taskLabel.text, at: taskLabel.text?.count)
         setDividerColor(priority: .complete)
-        setCompletedTimeFomat()
+        setCompletedTimeFormat()
     }
     
     /// [todo] 객체가 [isCompleted == false] 인 경우 동작합니다.
@@ -73,10 +73,10 @@ final class TodayListCell: UITableViewCell {
     }
     
     /// 오늘 날짜를 입력받아서 원하는 문자열 포맷으로 변경하고 [completedTimeLabel.text]을 설정합니다.
-    private func setCompletedTimeFomat() {
+    private func setCompletedTimeFormat() {
         let date = Date()
         let formatter = DateFormatter()
-        formatter.dateFormat = "HH시 mm분"
+        formatter.dateFormat = DateFormat.completedTime
         let dateToString = formatter.string(from: date)
         completedTimeLabel.text = "완료 시간: \(dateToString)"
     }

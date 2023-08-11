@@ -28,7 +28,7 @@ final class TodayViewController: UIViewController {
         tableView.dataSource = self /// 테이블 뷰의 데이터를 관리하기 위해 권한을 위임받습니다.
         tableView.delegate = self /// 테이블 뷰의 이벤트를 처리 할 수 있도록 권한을 위임받습니다.
         setConfigureButton()
-        setDateFomat()
+        setDateFormat()
     }
     
     // MARK: - Setting
@@ -36,14 +36,14 @@ final class TodayViewController: UIViewController {
     /// [addButton] 의 기본 구성을 설정합니다.
     private func setConfigureButton() {
         addButton.layer.borderWidth = 1
-        addButton.layer.borderColor = UIColor.lightGray.cgColor
+        addButton.layer.borderColor = UIColor.buttonBorderColor.cgColor
     }
     
     /// 오늘 날짜를 입력받아서 원하는 문자열 포맷으로 변경하고 [dateLabel.text] 을 설정합니다.
-    private func setDateFomat() {
+    private func setDateFormat() {
         let date = Date()
         let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy-MM-dd"
+        formatter.dateFormat = DateFormat.date
         let dateToString = formatter.string(from: date)
         dateLabel.text = dateToString
     }
@@ -66,13 +66,13 @@ final class TodayViewController: UIViewController {
         dismiss(animated: true)
     }
     
-    /// [DetailTodoScene] 에서 Todo 를 새롭게 만드는 경우 동작합니다.
+    /// [DetailTodoScene] 에서 [Todo] 객체를 새롭게 만드는 경우 동작합니다.
     @IBAction func todoDidCreate(_ segue: UIStoryboardSegue) {
         let row = todoDataManager.getTodoList().count - 1
         tableView.insertRows(at: [IndexPath(row: row, section: 0)], with: .automatic)
     }
     
-    /// [DetailTodoScene] 에서 Todo 를 업데이트하는 경우 동작합니다.
+    /// [DetailTodoScene] 에서 [Todo] 객체를 업데이트하는 경우 동작합니다.
     @IBAction func todoDidUpdate(_ segue: UIStoryboardSegue) {
         tableView.reloadData()
         dismiss(animated: true)

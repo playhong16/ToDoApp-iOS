@@ -56,7 +56,7 @@
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="PoX-Kn-wn9" secondAttribute="trailing" id="xA4-FB-00b"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="완료한 일" id="ijP-qz-C8M"/>
+                    <navigationItem key="navigationItem" title="완료한 일" largeTitleDisplayMode="always" id="ijP-qz-C8M"/>
                     <connections>
                         <outlet property="tableView" destination="PoX-Kn-wn9" id="nbJ-st-SMA"/>
                     </connections>

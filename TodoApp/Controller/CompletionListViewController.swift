@@ -45,6 +45,7 @@ extension CompletionListViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: Identifier.Cell.CompletionList, for: indexPath) as? CompletionListCell else { return UITableViewCell() }
         let completionTodoList = todoDataManger.getComletionList()
+        cell.selectionStyle = .none
         cell.completionTodo = completionTodoList[indexPath.row]
         return cell
     }

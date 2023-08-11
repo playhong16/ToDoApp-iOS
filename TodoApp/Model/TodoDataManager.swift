@@ -29,7 +29,7 @@ final class TodoDataManager {
         return todoList
     }
     
-    /// [isCompleted == true] [Todo] 객체를 담은 [completionList]을 반환합니다.
+    /// [isCompleted == true] [Todo] 객체를 담은 [completionList]을 반환합니다. - 고차함수를 사용해서 코드 리팩토링이 가능하다.
     func getComletionList() -> [Todo] {
         var completionList: [Todo] = []
         for todo in todoList {
