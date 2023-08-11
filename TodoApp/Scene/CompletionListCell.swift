@@ -15,7 +15,7 @@ final class CompletionListCell: UITableViewCell {
     
     // MARK: - Properites
     
-    // 완료된 [todo] 객체를 전달받기 위해 사용합니다.
+    /// 완료된 [todo] 객체를 전달받기 위해 사용합니다.
     var completionTodo: Todo? {
         didSet {
             setTodoData()

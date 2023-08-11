@@ -7,13 +7,14 @@
 
 import UIKit
 
-class TodayListCell: UITableViewCell {
+final class TodayListCell: UITableViewCell {
     
     // MARK: - Interface Builder Outlet
 
     @IBOutlet weak var completionButton: UIButton!
     @IBOutlet weak var divider: UIView!
     @IBOutlet weak var taskLabel: UILabel!
+    @IBOutlet weak var completedTimeLabel: UILabel!
     
     // MARK: - Properites
 
@@ -27,32 +28,34 @@ class TodayListCell: UITableViewCell {
     // MARK: - Setting
 
     /// [todo] 객체를 [TodayViewControll]에서 전달받는 경우 동작합니다.
-    func setTodoData() {
+    private func setTodoData() {
         guard let todo = self.todo else { return }
         taskLabel.text = todo.title
         todo.isCompleted ? setCompletedTask() : setUnCompletedTask()
     }
     
     /// [todo] 객체가 [isCompleted == true] 인 경우 동작합니다.
-    func setCompletedTask() {
-        taskLabel.textColor = .gray
+    private func setCompletedTask() {
+        taskLabel.textColor = .lightGray
         completionButton.setImage(UIImage.completionButtonImage, for: .normal)
         taskLabel.strikethrough(from: taskLabel.text, at: taskLabel.text?.count)
         setDividerColor(priority: .complete)
+        setCompletedTimeFormat()
     }
     
     /// [todo] 객체가 [isCompleted == false] 인 경우 동작합니다.
-    func setUnCompletedTask() {
+    private func setUnCompletedTask() {
         guard let todo = self.todo else { return }
         taskLabel.textColor = .black
         completionButton.setImage(UIImage.unComletionButtonImage, for: .normal)
         taskLabel.strikethrough(from: taskLabel.text, at: 0)
         setDividerColor(priority: todo.priority)
+        completedTimeLabel.text = ""
     }
     
     
     /// [TodoPriority] 에 따라 [divider] 와 [completionButton] 의 색깔을 설정합니다.
-    func setDividerColor(priority: TodoPriority) {
+    private func setDividerColor(priority: TodoPriority) {
         switch priority {
         case .high:
             divider.backgroundColor = priority.color
@@ -69,9 +72,18 @@ class TodayListCell: UITableViewCell {
         }
     }
     
-    // MARK: - Cell Configure
+    /// 오늘 날짜를 입력받아서 원하는 문자열 포맷으로 변경하고 [completedTimeLabel.text]을 설정합니다.
+    private func setCompletedTimeFormat() {
+        let date = Date()
+        let formatter = DateFormatter()
+        formatter.dateFormat = DateFormat.completedTime
+        let dateToString = formatter.string(from: date)
+        completedTimeLabel.text = "완료 시간: \(dateToString)"
+    }
+    
+    // MARK: - Cell
 
-    /// TodayViewController의 셀이 재사용될 때 완료되지 않은 todo 객체가 취소선이 생기는 경우를 방지하기 위해 셀을 초기화한다.
+    /// [TodayViewController]의 Cell이 재사용될 때 [isCompleted == false] 행에서 [taskLabel.text]에 취소선이 생기는 경우를 방지하기 위해 셀을 초기화한다.
     override func prepareForReuse() {
         super.prepareForReuse()
         taskLabel.strikethrough(from: taskLabel.text, at: 0)

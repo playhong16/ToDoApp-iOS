@@ -82,7 +82,7 @@
                                                         </userDefinedRuntimeAttribute>
                                                     </userDefinedRuntimeAttributes>
                                                     <connections>
-                                                        <segue destination="wqR-kt-TbF" kind="presentation" identifier="segueToDetailTodo" modalPresentationStyle="fullScreen" id="41g-jQ-v2i"/>
+                                                        <segue destination="wqR-kt-TbF" kind="presentation" identifier="toDetailSceneFromAddButton" modalPresentationStyle="fullScreen" id="41g-jQ-v2i"/>
                                                     </connections>
                                                 </button>
                                             </subviews>
@@ -100,6 +100,12 @@
                                                     <rect key="frame" x="0.0" y="0.0" width="393" height="90"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="complete: 15시 30분" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kCO-eb-a0c">
+                                                            <rect key="frame" x="239.66666666666663" y="62" width="128.33333333333337" height="17"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                            <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
                                                         <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="s54-cx-JIe">
                                                             <rect key="frame" x="10" y="10" width="373" height="70"/>
                                                             <subviews>
@@ -131,12 +137,15 @@
                                                     </subviews>
                                                     <constraints>
                                                         <constraint firstAttribute="trailing" secondItem="s54-cx-JIe" secondAttribute="trailing" constant="10" id="E5f-10-2gL"/>
+                                                        <constraint firstAttribute="trailingMargin" secondItem="kCO-eb-a0c" secondAttribute="trailing" constant="5" id="HnQ-cW-u6C"/>
+                                                        <constraint firstAttribute="bottomMargin" secondItem="kCO-eb-a0c" secondAttribute="bottom" id="IHk-sN-O6R"/>
                                                         <constraint firstItem="s54-cx-JIe" firstAttribute="leading" secondItem="TjW-VV-ifc" secondAttribute="leading" constant="10" id="LfC-MD-pcy"/>
                                                         <constraint firstItem="s54-cx-JIe" firstAttribute="top" secondItem="TjW-VV-ifc" secondAttribute="top" constant="10" id="PZq-ed-AUF"/>
                                                         <constraint firstAttribute="bottom" secondItem="s54-cx-JIe" secondAttribute="bottom" constant="10" id="wee-5k-6oV"/>
                                                     </constraints>
                                                 </tableViewCellContentView>
                                                 <connections>
+                                                    <outlet property="completedTimeLabel" destination="kCO-eb-a0c" id="DiA-q3-Y3Z"/>
                                                     <outlet property="completionButton" destination="o0y-Yd-gCq" id="MNo-n0-u4L"/>
                                                     <outlet property="divider" destination="kjS-l7-z5l" id="CvW-0E-dv1"/>
                                                     <outlet property="taskLabel" destination="p7V-GM-H2W" id="ed1-Ma-M93"/>
@@ -163,7 +172,7 @@
                         <outlet property="datePicker" destination="uG0-RC-RvS" id="Qx8-Z9-r6o"/>
                         <outlet property="footerView" destination="oHt-TL-i9U" id="vde-KQ-YUA"/>
                         <outlet property="tableView" destination="FzQ-xW-tVV" id="gLe-WQ-knp"/>
-                        <segue destination="wqR-kt-TbF" kind="show" identifier="toDetailTodo" id="cC1-bA-Akp"/>
+                        <segue destination="wqR-kt-TbF" kind="show" identifier="toDetailSceneFromTodayScene" id="cC1-bA-Akp"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

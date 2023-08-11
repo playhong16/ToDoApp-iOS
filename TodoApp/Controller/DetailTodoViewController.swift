@@ -24,13 +24,14 @@ final class DetailTodoViewController: UIViewController {
     
     // MARK: - Properties
     
-    let todoDataManager = TodoDataManager.shared
+    /// [TodaDataManager] 싱글톤 객체를 사용합니다.
+    private let todoDataManager = TodoDataManager.shared
     
     /// [todo] 객체를 전달받기 위해 사용합니다.
     var todo: Todo?
     
     /// [TodoPriority] 타입의 기본값 설정과 임시 저장을 위해 사용합니다.
-    var priority: TodoPriority = .medium
+    private lazy var priority: TodoPriority = todo?.priority ?? .medium
 
     // MARK: - Life Cycle
     
@@ -54,7 +55,7 @@ final class DetailTodoViewController: UIViewController {
             textView.textColor = .black
             setPriorityColor()
         } else {
-            textView.text = Placeholder.textView
+            textView.text = "내용을 입력하세요."
             textView.textColor = .lightGray
             textField.placeholder = Placeholder.textField
             setPriorityColor()
@@ -68,7 +69,7 @@ final class DetailTodoViewController: UIViewController {
             button.layer.masksToBounds = true
             button.layer.cornerRadius = 10
             button.layer.borderWidth = 1
-            button.layer.borderColor = UIColor.lightGray.cgColor
+            button.layer.borderColor = UIColor.buttonBorderColor.cgColor 
         }
     }
     
@@ -77,7 +78,7 @@ final class DetailTodoViewController: UIViewController {
         textView.layer.masksToBounds = true
         textView.layer.cornerRadius = 10
         textView.layer.borderWidth = 1
-        textView.layer.borderColor = UIColor.lightGray.cgColor
+        textView.layer.borderColor = UIColor.buttonBorderColor.cgColor
     }
     
     /// [texField]의 기본 구성을 설정합니다.
@@ -85,7 +86,7 @@ final class DetailTodoViewController: UIViewController {
         textField.layer.masksToBounds = true
         textField.layer.cornerRadius = 10
         textField.layer.borderWidth = 1
-        textField.layer.borderColor = UIColor.lightGray.cgColor
+        textField.layer.borderColor = UIColor.buttonBorderColor.cgColor
     }
     
     /// [priority] 의 케이스에 따라 버튼의 색깔을 변경할 수 있도록 설정합니다.
@@ -152,7 +153,7 @@ final class DetailTodoViewController: UIViewController {
     
     // MARK: - Task on incoming todo data
     
-    /// [todo] 객체를 전달받은 경우 실행합니다.
+    /// [todo] 객체를 전달받은 경우 [todo] 객체를 수정하는 경우 실행합니다.
     private func update(todo: Todo) {
         guard let text = textField.text else { return }
         todo.title = text
@@ -169,7 +170,7 @@ final class DetailTodoViewController: UIViewController {
         performSegue(withIdentifier: "todoDidCreate", sender: nil)
     }
 
-    /// [saveButton]의 동작을 설정합니다.
+    /// [todo] 객체의 존재 여부에 따라 [saveButton]의 동작을 설정합니다.
     private func setSaveButtonAction() {
         if let todo { update(todo: todo) }
         else { addTodo() }
@@ -188,7 +189,7 @@ final class DetailTodoViewController: UIViewController {
 // MARK: - Extension
 
 extension DetailTodoViewController: UITextViewDelegate {
-    /// 텍스트 뷰의 편집이 시작될 때 실행됩니다.
+    /// [textView]의 편집이 시작될 때 실행됩니다.
     func textViewDidBeginEditing(_ textView: UITextView) {
         if textView.text == Placeholder.textView {
             textView.text = nil
@@ -196,7 +197,7 @@ extension DetailTodoViewController: UITextViewDelegate {
         }
     }
     
-    /// 텍스트 뷰의 편집이 종료될 때 실행됩니다.
+    /// [textView]의 편집이 종료될 때 실행됩니다.
     func textViewDidEndEditing(_ textView: UITextView) {
         if textView.text.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
             textView.text = Placeholder.textView

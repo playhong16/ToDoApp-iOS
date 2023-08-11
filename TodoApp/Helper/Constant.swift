@@ -23,6 +23,16 @@ enum Identifier {
     }
     
     enum Segue {
+        static let toDetailSceneFromAddButton = "toDetailSceneFromAddButton"
+        static let toDetailSceneFromTodayScene = "toDetailSceneFromTodayScene"
+    }
+    
+    enum UnwindSegue {
         
     }
+}
+
+enum DateFormat {
+    static let date = "yyyy-MM-dd"
+    static let completedTime = "HH시 mm분"
 }
