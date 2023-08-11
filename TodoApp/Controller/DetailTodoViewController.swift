@@ -24,6 +24,7 @@ final class DetailTodoViewController: UIViewController {
     
     // MARK: - Properties
     
+    /// [TodaDataManager] 싱글톤 객체를 사용합니다.
     let todoDataManager = TodoDataManager.shared
     
     /// [todo] 객체를 전달받기 위해 사용합니다.
@@ -152,7 +153,7 @@ final class DetailTodoViewController: UIViewController {
     
     // MARK: - Task on incoming todo data
     
-    /// [todo] 객체를 전달받은 경우 실행합니다.
+    /// [todo] 객체를 전달받은 경우 [todo] 객체를 수정하는 경우 실행합니다.
     private func update(todo: Todo) {
         guard let text = textField.text else { return }
         todo.title = text
@@ -169,7 +170,7 @@ final class DetailTodoViewController: UIViewController {
         performSegue(withIdentifier: "todoDidCreate", sender: nil)
     }
 
-    /// [saveButton]의 동작을 설정합니다.
+    /// [todo] 객체의 존재 여부에 따라 [saveButton]의 동작을 설정합니다.
     private func setSaveButtonAction() {
         if let todo { update(todo: todo) }
         else { addTodo() }
@@ -188,7 +189,7 @@ final class DetailTodoViewController: UIViewController {
 // MARK: - Extension
 
 extension DetailTodoViewController: UITextViewDelegate {
-    /// 텍스트 뷰의 편집이 시작될 때 실행됩니다.
+    /// [textView]의 편집이 시작될 때 실행됩니다.
     func textViewDidBeginEditing(_ textView: UITextView) {
         if textView.text == Placeholder.textView {
             textView.text = nil
@@ -196,7 +197,7 @@ extension DetailTodoViewController: UITextViewDelegate {
         }
     }
     
-    /// 텍스트 뷰의 편집이 종료될 때 실행됩니다.
+    /// [textView]의 편집이 종료될 때 실행됩니다.
     func textViewDidEndEditing(_ textView: UITextView) {
         if textView.text.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
             textView.text = Placeholder.textView

@@ -23,6 +23,11 @@ enum Identifier {
     }
     
     enum Segue {
+        static let toDetailSceneFromAddButton = "toDetailSceneFromAddButton"
+        static let toDetailSceneFromTodayScene = "toDetailSceneFromTodayScene"
+    }
+    
+    enum UnwindSegue {
         
     }
 }
