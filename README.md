@@ -14,6 +14,11 @@
 
 
 ## 주요 화면
-<img src="https://github.com/playhong16/nbc_week3_project/assets/119715960/49e1ff40-e47f-4480-9457-a11df44badcc.png" width="250" height="400"/>
-<img src="https://github.com/playhong16/nbc_week3_project/assets/119715960/37dd1f84-6871-44e7-95b4-9b3d4b8b7d5f.png" width="250" height="400"/>
-<img src="https://github.com/playhong16/nbc_week3_project/assets/119715960/3f08a010-3ced-4e40-b2ed-7f0779ac541f.png" width="250" height="400"/>
+<div markdown="1">
+	<p align="center">
+		<img width="200" alt="1" src="image/조회.png" />
+		<img width="200" alt="2" src="image/생성.png" />
+		<img width="200" alt="3" src="image/완료.png" />
+		<img width="200" alt="4" src="image/완료한일_처리.png" />
+	</p>
+</div>
