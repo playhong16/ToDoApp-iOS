@@ -14,6 +14,6 @@
 
 
 ## 주요 화면
-<img src="[이미지주소.png](https://github.com/playhong16/nbc_week3_project/assets/119715960/49e1ff40-e47f-4480-9457-a11df44badcc)" width="200" height="400"/>
+<img src="https://github.com/playhong16/nbc_week3_project/assets/119715960/49e1ff40-e47f-4480-9457-a11df44badcc" width="200" height="400"/>
 ![생성](https://github.com/playhong16/nbc_week3_project/assets/119715960/37dd1f84-6871-44e7-95b4-9b3d4b8b7d5f)
 ![완료처리](https://github.com/playhong16/nbc_week3_project/assets/119715960/3f08a010-3ced-4e40-b2ed-7f0779ac541f)
