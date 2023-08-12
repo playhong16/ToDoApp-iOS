@@ -16,9 +16,9 @@
 ## 주요 화면
 <div markdown="1">
 	<p align="center">
-		<img width="200" alt="1" src="image/조회.png" />
-		<img width="200" alt="2" src="image/생성.png" />
-		<img width="200" alt="3" src="image/완료처리.png" />
-		<img width="200" alt="4" src="image/완료한일_조회.png" />
+		<img width="200" alt="1" src="image/조회_1.png" />
+		<img width="200" alt="2" src="image/생성_1.png" />
+		<img width="200" alt="3" src="image/완료처리_1.png" />
+		<img width="200" alt="4" src="image/완료조회_1.png" />
 	</p>
 </div>
