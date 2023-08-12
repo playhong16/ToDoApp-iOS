@@ -18,7 +18,7 @@
 	<p align="center">
 		<img width="200" alt="1" src="image/조회.png" />
 		<img width="200" alt="2" src="image/생성.png" />
-		<img width="200" alt="3" src="image/완료.png" />
-		<img width="200" alt="4" src="image/완료한일_처리.png" />
+		<img width="200" alt="3" src="image/완료처리.png" />
+		<img width="200" alt="4" src="image/완료한일_조회.png" />
 	</p>
 </div>
