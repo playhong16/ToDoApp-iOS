@@ -28,7 +28,9 @@ enum Identifier {
     }
     
     enum UnwindSegue {
-        
+        static let cancelFromDetailTodoScene = "cancelFromDetailTodoScene"
+        static let createFromDetailTodoScene = "createFromDetailTodoScene"
+        static let updateFromDetailTodoScene = "updateFromDetailTodoScene"
     }
 }
 

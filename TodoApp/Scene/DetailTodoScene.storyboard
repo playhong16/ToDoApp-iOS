@@ -12,7 +12,7 @@
         <!--Detail Todo View Controller-->
         <scene sceneID="s0d-6b-0kx">
             <objects>
-                <viewController id="Y6W-OH-hqX" customClass="DetailTodoViewController" customModule="TodoApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController hidesBottomBarWhenPushed="YES" id="Y6W-OH-hqX" customClass="DetailTodoViewController" customModule="TodoApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -78,11 +78,11 @@
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uPs-x9-Gyw">
                                 <rect key="frame" x="0.0" y="59" width="393" height="44"/>
                                 <items>
-                                    <navigationItem title="할 일 작성하기" id="MgQ-Nr-g8w">
+                                    <navigationItem title="작성하기" id="MgQ-Nr-g8w">
                                         <barButtonItem key="leftBarButtonItem" title="취소" id="ZrS-ar-m3R">
                                             <color key="tintColor" systemColor="secondaryLabelColor"/>
                                             <connections>
-                                                <segue destination="aZG-RT-tam" kind="unwind" identifier="cancel" unwindAction="cancel:" id="zV7-Zo-xaq"/>
+                                                <segue destination="aZG-RT-tam" kind="unwind" identifier="cancelFromDetailTodoScene" unwindAction="cancelFromDetailTodoScene:" id="zV7-Zo-xaq"/>
                                             </connections>
                                         </barButtonItem>
                                         <barButtonItem key="rightBarButtonItem" title="저장" id="PZd-Qh-PKH">
@@ -95,7 +95,7 @@
                                 </items>
                             </navigationBar>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="6Kx-oc-Qf1">
-                                <rect key="frame" x="30" y="360.33333333333326" width="333" height="368.66666666666674"/>
+                                <rect key="frame" x="30" y="360.33333333333326" width="333" height="417.66666666666674"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <color key="textColor" red="0.71017662569999995" green="0.76807514089999995" blue="0.79651929610000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -135,14 +135,14 @@
                         <outlet property="highPriorityButton" destination="okG-TM-Gos" id="M0l-a4-3AF"/>
                         <outlet property="lowPriorityButton" destination="UCW-bs-fmg" id="zye-ft-Jec"/>
                         <outlet property="mediumPriorityButton" destination="b1K-vX-ffB" id="IWd-m1-06C"/>
-                        <outlet property="navigationBar" destination="uPs-x9-Gyw" id="5EF-za-keG"/>
+                        <outlet property="rightBarButtonItem" destination="PZd-Qh-PKH" id="Cy0-Cr-A2r"/>
                         <outlet property="textField" destination="rbQ-r4-YSB" id="Bmb-Im-nN1"/>
                         <outlet property="textView" destination="6Kx-oc-Qf1" id="PPq-15-b6J"/>
                         <outletCollection property="priorityButtons" destination="okG-TM-Gos" collectionClass="NSMutableArray" id="Ggi-hC-HFN"/>
                         <outletCollection property="priorityButtons" destination="b1K-vX-ffB" collectionClass="NSMutableArray" id="Uvb-6P-z2J"/>
                         <outletCollection property="priorityButtons" destination="UCW-bs-fmg" collectionClass="NSMutableArray" id="zL4-CQ-zia"/>
-                        <segue destination="aZG-RT-tam" kind="unwind" identifier="todoDidCreate" unwindAction="todoDidCreate:" id="lAX-Y0-2RC"/>
-                        <segue destination="aZG-RT-tam" kind="unwind" identifier="todoDidUpdate" unwindAction="todoDidUpdate:" id="Vdd-PC-VpK"/>
+                        <segue destination="aZG-RT-tam" kind="unwind" identifier="createFromDetailTodoScene" unwindAction="createFromDetailTodoScene:" id="lAX-Y0-2RC"/>
+                        <segue destination="aZG-RT-tam" kind="unwind" identifier="updateFromDetailTodoScene" unwindAction="updateFromDetailTodoScene:" id="Vdd-PC-VpK"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
