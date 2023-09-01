@@ -13,10 +13,7 @@ final class TodoDataManager {
     
     private let userDefaults = UserDefaults.standard
     private let key = "TodoList"
-//    private var todoList: [Todo] = [
-//        Todo(title: "Swift 문법 마스터하기", textContent: "클로저 공부하기", isCompleted: false, priority: .high, category: .life),
-//        Todo(title: "UIKit 프레임워크 공부하기", textContent: "네비게이션 컨트롤러 이해하기", isCompleted: false, priority: .high, category: .work),
-//    ]
+
     private init() {}
 
     func getTodoList() -> [Todo] {
@@ -28,12 +25,7 @@ final class TodoDataManager {
     }
     
     func getComletionList() -> [Todo] {
-        var completionList: [Todo] = []
-        for todo in getTodoList() {
-            if todo.isCompleted {
-                completionList.append(todo)
-            }
-        }
+        var completionList = getTodoList().filter { $0.isCompleted == true }
         return completionList
     }
     

@@ -9,12 +9,10 @@ import UIKit
 
 final class TodayViewController: UIViewController {
     
-    /// [TodaDataManager] 싱글톤 객체를 사용합니다.
     private let todoDataManager = TodoDataManager.shared
     
     // MARK: - Interface Builder Outlet
 
-    
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var footerView: UIView!
@@ -23,13 +21,12 @@ final class TodayViewController: UIViewController {
 
     // MARK: - Life Cycle
 
-    /// 뷰가 로드되면 실행됩니다.
     override func viewDidLoad() {
         super.viewDidLoad()
         configureUI()
     }
     
-    // MARK: - Configure UI
+    // MARK: - Configure
     
     private func configureUI() {
         configureButton()
@@ -107,7 +104,7 @@ final class TodayViewController: UIViewController {
 
 // MARK: - Extension
 
-// MARK: - Table View Data Source
+// MARK: - TableView DataSource
 
 extension TodayViewController: UITableViewDataSource {
     
@@ -146,7 +143,7 @@ extension TodayViewController: UITableViewDataSource {
     }
 }
 
-// MARK: - Table View Delegate
+// MARK: - TableView Delegate
 
 extension TodayViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
