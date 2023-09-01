@@ -155,9 +155,16 @@ extension TodayViewController: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        let delete = UIContextualAction(style: .normal, title: Title.delete) { (action, view, completionHandler) in
-            self.todoDataManager.deleteTodoList(index: indexPath.row)
-            tableView.deleteRows(at: [IndexPath(row: indexPath.row, section: 0)], with: .automatic)
+        let delete = UIContextualAction(style: .normal, title: Title.delete) { [weak self] (_, _, _) in
+            if indexPath.section == 0 {
+                guard let todo = self?.todoDataManager.getLifeTodo()[indexPath.row] else { return }
+                self?.todoDataManager.deleteTodoList(todo: todo)
+            }
+            if indexPath.section == 1 {
+                guard let todo = self?.todoDataManager.getWorkTodo()[indexPath.row] else { return }
+                self?.todoDataManager.deleteTodoList(todo: todo)
+            }
+            tableView.reloadData()
         }
         delete.backgroundColor = .red
         delete.title = Title.delete

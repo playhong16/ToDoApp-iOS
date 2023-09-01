@@ -59,9 +59,9 @@ final class TodoDataManager {
         updateUserDefaults(todoList)
     }
 
-    func deleteTodoList(index: Int) {
+    func deleteTodoList(todo: Todo) {
         var todoList = getTodoList()
-        todoList.remove(at: index)
+        todoList.removeAll { $0.date == todo.date }
         updateUserDefaults(todoList)
     }
 }
