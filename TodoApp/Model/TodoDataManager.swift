@@ -9,30 +9,27 @@ import UIKit
 
 final class TodoDataManager {
     
-    /// TodoDataManager 를 싱글톤 객체로 만들어서 사용합니다.
-    /*
-     [TodoDataManager] 객체를 생성해서 'shared' 상수에 담고,
-     필요한 경우 'shared' 에 접근해서 TodoDataManager 객체와 상호작용을 합니다.
-    */
     static let shared = TodoDataManager()
     
-    private var todoList: [Todo] = [
-        Todo(title: "Swift 문법 마스터하기", textContent: "클로저 공부하기", isCompleted: false, priority: .high),
-        Todo(title: "UIKit 프레임워크 공부하기", textContent: "네비게이션 컨트롤러 이해하기", isCompleted: false, priority: .high),
-    ]
-    
-    /// TodoDataManager 를 하나의 객체만 만들어서(싱글톤 패턴) 사용하기 위해 생성자의 접근을 제어합니다.
+    private let userDefaults = UserDefaults.standard
+    private let key = "TodoList"
+//    private var todoList: [Todo] = [
+//        Todo(title: "Swift 문법 마스터하기", textContent: "클로저 공부하기", isCompleted: false, priority: .high, category: .life),
+//        Todo(title: "UIKit 프레임워크 공부하기", textContent: "네비게이션 컨트롤러 이해하기", isCompleted: false, priority: .high, category: .work),
+//    ]
     private init() {}
-    
-    /// [todoList]를 반환합니다.
+
     func getTodoList() -> [Todo] {
-        return todoList
+        if let encodedTodoList = self.userDefaults.object(forKey: key) as? Data,
+           let todoList = try? JSONDecoder().decode([Todo].self, from: encodedTodoList) {
+            return todoList
+        }
+        return []
     }
     
-    /// [isCompleted == true] [Todo] 객체를 담은 [completionList]을 반환합니다. - 고차함수를 사용해서 코드 리팩토링이 가능하다.
     func getComletionList() -> [Todo] {
         var completionList: [Todo] = []
-        for todo in todoList {
+        for todo in getTodoList() {
             if todo.isCompleted {
                 completionList.append(todo)
             }
@@ -40,24 +37,31 @@ final class TodoDataManager {
         return completionList
     }
     
-//    func getTodoByDateList(date: Date) -> [Todo] {
-//        var todoByDateList: [Todo] = []
-//        for todo in todoList {
-//            if todo.date == date {
-//                todoByDateList.append(todo)
-//            }
-//        }
-//        return todoByDateList
-//    }
+    func getWorkTodo() -> [Todo] {
+        let workTodoList = getTodoList().filter { $0.category == .work }
+        return workTodoList
+    }
     
-    /// [todoList]에 [Todo] 객체를 추가합니다.
-    func createTodoList(todo: Todo) {
+    func getLifeTodo() -> [Todo] {
+        let lifeTodoList = getTodoList().filter { $0.category == .life }
+        return lifeTodoList
+    }
+    
+    private func updateUserDefaults(_ todoList: [Todo]) {
+        if let encodedTodoList = try? JSONEncoder().encode(todoList) {
+            userDefaults.set(encodedTodoList, forKey: key)
+        }
+    }
+
+    func createTodo(todo: Todo) {
+        var todoList = getTodoList()
         todoList.append(todo)
+        updateUserDefaults(todoList)
     }
-    
-    /// [todoList]에서 [Todo] 객체를 삭제합니다.
+
     func deleteTodoList(index: Int) {
+        var todoList = getTodoList()
         todoList.remove(at: index)
+        updateUserDefaults(todoList)
     }
-    
 }

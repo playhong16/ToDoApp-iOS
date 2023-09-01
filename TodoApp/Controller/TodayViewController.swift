@@ -90,8 +90,7 @@ final class TodayViewController: UIViewController {
     
     /// [DetailTodoScene] 에서 [Todo] 객체를 새롭게 만드는 경우 동작합니다.
     @IBAction func createFromDetailTodoScene(_ segue: UIStoryboardSegue) {
-        let row = todoDataManager.getTodoList().count - 1
-        tableView.insertRows(at: [IndexPath(row: row, section: 0)], with: .automatic)
+        tableView.insertRows(at: [IndexPath(row: <#T##Int#>, section: <#T##Int#>)], with: .automatic)
     }
     
     /// [DetailTodoScene] 에서 [Todo] 객체를 업데이트하는 경우 동작합니다.
@@ -106,33 +105,50 @@ final class TodayViewController: UIViewController {
 // MARK: - Table View Data Source
 
 extension TodayViewController: UITableViewDataSource {
-    /// [Table View]의 섹션안에서 [행(Cell)]을 몇 개 사용할지 [Table View]에게 알려줍니다.
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return todoDataManager.getTodoList().count
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return TodoCategory.allCases.count
     }
     
-    /// 재사용하려는 [Cell]이 무엇인지 [Table View]에게 알려줍니다.
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if section == 0 { return todoDataManager.getLifeTodo().count }
+        if section == 1 { return todoDataManager.getWorkTodo().count }
+        return 0
+    }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: Identifier.Cell.todayList,
                                                        for: indexPath) as? TodayListCell else { return UITableViewCell() }
-        let todoList = todoDataManager.getTodoList()
-        cell.todo = todoList[indexPath.row]
-        cell.selectionStyle = .none
-        return cell
+        if indexPath.section == 0 {
+            let todoList = todoDataManager.getLifeTodo()
+            cell.todo = todoList[indexPath.row]
+            cell.selectionStyle = .none
+            return cell
+        }
+        if indexPath.section == 1 {
+            let todoList = todoDataManager.getWorkTodo()
+            cell.todo = todoList[indexPath.row]
+            cell.selectionStyle = .none
+            return cell
+        }
+        return UITableViewCell()
     }
     
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        if section == 0 { return TodoCategory.life.rawValue }
+        if section == 1 { return TodoCategory.work.rawValue }
+        return "none"
+    }
 }
 
 // MARK: - Table View Delegate
 
 extension TodayViewController: UITableViewDelegate {
-    /// [Table View]의 [행(Cell)]을 선택하면 실행합니다.
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let todo = todoDataManager.getTodoList()[indexPath.row]
         performSegue(withIdentifier: Identifier.Segue.toDetailSceneFromTodayScene, sender: todo)
     }
     
-    /// [Table View]의 [행(Cell)] trailing 끝에 표시하려는 스와이프 동작을 나타냅니다.
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let delete = UIContextualAction(style: .normal, title: Title.delete) { (action, view, completionHandler) in
             self.todoDataManager.deleteTodoList(index: indexPath.row)
