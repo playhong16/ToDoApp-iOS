@@ -181,7 +181,7 @@ final class DetailTodoViewController: UIViewController {
         guard let text = textField.text else { return }
         let todo = Todo(title: text, textContent: textView.text, priority: self.priority, category: self.category)
         todoDataManager.createTodo(todo: todo)
-        performSegue(withIdentifier: Identifier.UnwindSegue.createFromDetailTodoScene, sender: nil)
+        performSegue(withIdentifier: Identifier.UnwindSegue.createFromDetailTodoScene, sender: category)
     }
 
     private func setSaveButtonAction() {

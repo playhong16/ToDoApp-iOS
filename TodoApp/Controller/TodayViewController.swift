@@ -31,7 +31,6 @@ final class TodayViewController: UIViewController {
     
     // MARK: - Configure UI
     
-    /// 기본 구성을 설정하는 메서드를 호출합니다.
     private func configureUI() {
         configureButton()
         configureTableView()
@@ -39,19 +38,16 @@ final class TodayViewController: UIViewController {
         setDateFormat()
     }
     
-    /// [addButton] 의 기본 구성을 설정합니다.
     private func configureButton() {
         addButton.layer.borderWidth = 1
         addButton.layer.borderColor = UIColor.buttonBorderColor.cgColor
     }
     
-    /// [tableView]의 기본 구성을 설정합니다.
     private func configureTableView() {
         tableView.dataSource = self
         tableView.delegate = self
     }
     
-    /// [tabBar]의 기본 구성을 설정합니다.
     private func configureTabBar() {
         tabBarController?.tabBar.layer.borderWidth = 0.5
         tabBarController?.tabBar.layer.borderColor = UIColor.lightGray.cgColor
@@ -59,7 +55,6 @@ final class TodayViewController: UIViewController {
     
     // MARK: - Setting
 
-    /// 오늘 날짜를 입력받아서 원하는 문자열 포맷으로 변경하고 [dateLabel.text] 을 설정합니다.
     private func setDateFormat() {
         let date = Date()
         let formatter = DateFormatter()
@@ -69,15 +64,25 @@ final class TodayViewController: UIViewController {
     }
     
     // MARK: - Segue
-
-    /// [Segue]를 실행하기 전에 수행해야하는 동작들을 처리합니다.
-    /// [Segue]의 Destination(목적지)가 [DetailTodoViewController]일 때 [sender] 파라미터에 [Todo] 객체가 담겨있다면, [DetailTodoViewController] 의 [todo] 저장 속성에 [sender] 의 [todo] 를 담는다.
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == Identifier.Segue.toDetailSceneFromTodayScene {
             guard let moveVC = segue.destination as? DetailTodoViewController,
                   let todo = sender as? Todo
             else { return }
             moveVC.todo = todo
+        }
+        
+        if segue.identifier == Identifier.UnwindSegue.createFromDetailTodoScene {
+            guard let category = sender as? TodoCategory else { return }
+            if category == .life {
+                let row = todoDataManager.getLifeTodo().count - 1
+                tableView.insertRows(at: [IndexPath(row: row, section: 0)], with: .automatic)
+            }
+            if category == .work {
+                let row = todoDataManager.getWorkTodo().count - 1
+                tableView.insertRows(at: [IndexPath(row: row, section: 1)], with: .automatic)
+            }
         }
     }
     
@@ -90,7 +95,7 @@ final class TodayViewController: UIViewController {
     
     /// [DetailTodoScene] 에서 [Todo] 객체를 새롭게 만드는 경우 동작합니다.
     @IBAction func createFromDetailTodoScene(_ segue: UIStoryboardSegue) {
-        tableView.insertRows(at: [IndexPath(row: <#T##Int#>, section: <#T##Int#>)], with: .automatic)
+        tableView.reloadData()
     }
     
     /// [DetailTodoScene] 에서 [Todo] 객체를 업데이트하는 경우 동작합니다.
