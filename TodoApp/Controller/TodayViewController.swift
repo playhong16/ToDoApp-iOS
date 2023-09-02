@@ -137,9 +137,9 @@ extension TodayViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        if section == 0 { return TodoCategory.life.rawValue }
-        if section == 1 { return TodoCategory.work.rawValue }
-        return "none"
+        if section == 0 && !todoDataManager.getLifeTodo().isEmpty { return TodoCategory.life.rawValue }
+        if section == 1 && !todoDataManager.getWorkTodo().isEmpty { return TodoCategory.work.rawValue }
+        return ""
     }
 }
 
