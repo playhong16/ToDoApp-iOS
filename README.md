@@ -19,3 +19,8 @@
 그리고 데이터의 일관성을 유지하기 위해 `TodoDataManager` 에서 `UserDefautls` 에 접근해서, 데이터를 "TodoList" 라는 키값을 사용해서 저장하고 저장한 데이터를 불러오도록 구현했습니다.
 각각의 `Controller` 는 `TodoDataManager` 에게 데이터를 전달받고, 해당 데이터를 스토리보드로 구성된 각각의 `Scene(View)` 에 전달해서 데이터를 세팅합니다.
 ![App_Layer](https://github.com/playhong16/nbc_week3_project/assets/119715960/4f472ef4-0207-4c1f-a263-65c59460ea9e)
+
+## 추가 구현 필요
+1. Update 구현 후 할 일을 완료함을 체크했을 때, 완료한 일에 완료한 할 일을 조회할 수 있도록 구현
+2. Update 구현 후 할 일을 수정하고 수정된 데이터가 적용될 수 있도록 구현
+3. DetailTodoScene에서 취소 버튼을 눌렀을 때, 시작화면으로 전환되는 것 수정 필요
