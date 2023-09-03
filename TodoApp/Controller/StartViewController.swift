@@ -9,9 +9,13 @@ import UIKit
 
 class StartViewController: UIViewController {
     
-    @IBOutlet weak var mainImageView: UIImageView!
-    
+    // MARK: - Properties
+
     let url = "https://spartacodingclub.kr/css/images/scc-og.jpg"
+    
+    // MARK: - Interface Builder Outlet
+
+    @IBOutlet weak var mainImageView: UIImageView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -19,6 +23,8 @@ class StartViewController: UIViewController {
         mainImageView.loadImage(url: url)
     }
     
+    // MARK: - Action
+
     @IBAction func startButtonTapped(_ sender: UIButton) {
         let mainStoryboard = UIStoryboard(name: "TodayScene", bundle: nil)
         guard let mainViewController = mainStoryboard.instantiateInitialViewController() else { return }

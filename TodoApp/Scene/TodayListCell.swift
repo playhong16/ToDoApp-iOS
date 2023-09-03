@@ -7,6 +7,10 @@
 
 import UIKit
 
+protocol TodayListCellDelegate: AnyObject {
+    func completionButtonTapped(_ todo: Todo)
+}
+
 final class TodayListCell: UITableViewCell {
     
     // MARK: - Interface Builder Outlet
@@ -18,7 +22,7 @@ final class TodayListCell: UITableViewCell {
     
     // MARK: - Properites
 
-    /// [todo] 객체를 전달받기 위해 사용합니다.
+    weak var delegate: TodayListCellDelegate?
     var todo: Todo? {
         didSet {
             setTodoData()
@@ -27,14 +31,12 @@ final class TodayListCell: UITableViewCell {
     
     // MARK: - Setting
 
-    /// [todo] 객체를 [TodayViewControll]에서 전달받는 경우 동작합니다.
     private func setTodoData() {
         guard let todo = self.todo else { return }
         taskLabel.text = todo.title
         todo.isCompleted ? setCompletedTodo() : setUnCompletedTodo()
     }
     
-    /// [todo] 객체가 [isCompleted == true] 인 경우 동작합니다.
     private func setCompletedTodo() {
         taskLabel.textColor = .lightGray
         completionButton.setImage(UIImage.completionButtonImage, for: .normal)
@@ -44,7 +46,6 @@ final class TodayListCell: UITableViewCell {
         todo?.completedTime = setTimeFormat()
     }
     
-    /// [todo] 객체가 [isCompleted == false] 인 경우 동작합니다.
     private func setUnCompletedTodo() {
         guard let todo = self.todo else { return }
         taskLabel.textColor = .black
@@ -55,8 +56,6 @@ final class TodayListCell: UITableViewCell {
         todo.completedTime = nil
     }
     
-    
-    /// [TodoPriority] 에 따라 [divider] 와 [completionButton] 의 색깔을 설정합니다.
     private func setDividerColor(priority: TodoPriority) {
         switch priority {
         case .high:
@@ -74,7 +73,6 @@ final class TodayListCell: UITableViewCell {
         }
     }
     
-    /// 오늘 날짜를 입력받아서 원하는 문자열 포맷으로 변경하고 [completedTimeLabel.text]을 설정합니다.
     private func setTimeFormat() -> String {
         let date = Date()
         let formatter = DateFormatter()
@@ -85,7 +83,6 @@ final class TodayListCell: UITableViewCell {
     
     // MARK: - Cell
 
-    /// [TodayViewController]의 Cell이 재사용될 때 [isCompleted == false] 행에서 [taskLabel.text]에 취소선이 생기는 경우를 방지하기 위해 셀을 초기화한다.
     override func prepareForReuse() {
         super.prepareForReuse()
         taskLabel.strikethrough(from: taskLabel.text, at: 0)
@@ -93,11 +90,11 @@ final class TodayListCell: UITableViewCell {
     
     // MARK: - Interface Builder Action
 
-    /// [completionButton] 을 누르면 동작합니다.
     @IBAction func completionButtonTapped(_ sender: UIButton) {
         guard let todo else { return }
         todo.isCompleted ? setUnCompletedTodo() : setCompletedTodo()
         todo.isCompleted.toggle()
+        delegate?.completionButtonTapped(todo)
     }
     
 }

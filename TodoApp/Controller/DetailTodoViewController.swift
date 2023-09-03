@@ -9,6 +9,18 @@ import UIKit
 
 final class DetailTodoViewController: UIViewController {
     
+    // MARK: - Properties
+    
+    private let todoDataManager = TodoDataManager.shared
+    private var categoryMenu: UIMenu {
+        let menu = UIMenu(title: "카테고리", children: showCategoryMenu())
+        return menu
+    }
+    var addButtonTapped: ((TodoCategory) -> Void)?
+    private lazy var priority: TodoPriority = todo?.priority ?? .medium
+    private lazy var category: TodoCategory = todo?.category ?? .life
+    var todo: Todo?
+    
     // MARK: - Interface Builder Outlet
     
     @IBOutlet var rightBarButtonItem: UIBarButtonItem!
@@ -20,20 +32,8 @@ final class DetailTodoViewController: UIViewController {
     @IBOutlet weak var lowPriorityButton: UIButton!
     @IBOutlet var priorityButtons: [UIButton]!
     
-    // MARK: - Properties
-    
-    private let todoDataManager = TodoDataManager.shared
-    private var categoryMenu: UIMenu {
-        let menu = UIMenu(title: "카테고리", children: showCategoryMenu())
-        return menu
-    }
-    private lazy var priority: TodoPriority = todo?.priority ?? .medium
-    private lazy var category: TodoCategory = todo?.category ?? .life
-    var todo: Todo?
-    
     // MARK: - Life Cycle
     
-    /// 뷰가 로드되면 실행됩니다.
     override func viewDidLoad() {
         super.viewDidLoad()
         configureUI()
@@ -48,7 +48,6 @@ final class DetailTodoViewController: UIViewController {
         configureTextField()
     }
 
-    /// [priorityButtons]의 기본 구성을 설정합니다.
     private func configureButton() {
         categoryButton.menu = categoryMenu
         categoryButton.layer.masksToBounds = true
@@ -174,26 +173,38 @@ final class DetailTodoViewController: UIViewController {
         todo.title = text
         todo.textContent = textView.text
         todo.priority = self.priority
-        performSegue(withIdentifier: Identifier.UnwindSegue.updateFromDetailTodoScene, sender: todo)
+        todoDataManager.updateTodo(todo)
+        navigationController?.popViewController(animated: true)
     }
     
     private func addTodo() {
-        guard let text = textField.text else { return }
+        guard let text = textField.text,
+        let action = self.addButtonTapped else { return }
         let todo = Todo(title: text, textContent: textView.text, priority: self.priority, category: self.category)
         todoDataManager.createTodo(todo: todo)
-        performSegue(withIdentifier: Identifier.UnwindSegue.createFromDetailTodoScene, sender: category)
+        action(todo.category)
+        dismiss(animated: true)
     }
 
     private func setSaveButtonAction() {
-        if let todo { update(todo) }
-        else { addTodo() }
+        guard let todo else { return addTodo() }
+        update(todo)
     }
     
-    // MARK: - Button Tapped
+    // MARK: - Action
+    
+    @IBAction func cancelButtonTapped(_ sender: UIBarButtonItem) {
+        if todo == nil { dismiss(animated: true) }
+        if todo != nil { self.navigationController?.popViewController(animated: true) }
+    }
     
     @IBAction func saveButtonTapped(_ sender: UIBarButtonItem) {
         guard let isEmpty = textField.text?.isEmpty else { return }
-        isEmpty ? performSegue(withIdentifier: Identifier.UnwindSegue.cancelFromDetailTodoScene, sender: nil) : setSaveButtonAction()
+        if isEmpty {
+            navigationController?.popViewController(animated: true)
+            return
+        }
+        setSaveButtonAction()
     }
     
     // MARK: - Other

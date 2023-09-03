@@ -174,8 +174,8 @@
             filePath = "TodoApp/Controller/CompletionListViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "41"
-            endingLineNumber = "41"
+            startingLineNumber = "40"
+            endingLineNumber = "40"
             landmarkName = "unknown"
             landmarkType = "0">
          </BreakpointContent>
@@ -385,22 +385,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "713AED80-33E4-486A-9A36-1360B59DCB6C"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "TodoApp/Controller/TodayViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "151"
-            endingLineNumber = "151"
-            landmarkName = "tableView(_:didSelectRowAt:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             uuid = "44943F79-88D0-4526-92EC-5AB5DD8A41CB"
             shouldBeEnabled = "No"
             ignoreCount = "0"
@@ -408,8 +392,8 @@
             filePath = "TodoApp/Controller/DetailTodoViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "218"
-            endingLineNumber = "218"
+            startingLineNumber = "229"
+            endingLineNumber = "229"
             landmarkName = "textViewDidEndEditing(_:)"
             landmarkType = "7">
             <Locations>
@@ -456,58 +440,10 @@
             filePath = "TodoApp/Controller/DetailTodoViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "177"
-            endingLineNumber = "177"
+            startingLineNumber = "176"
+            endingLineNumber = "176"
             landmarkName = "update(_:)"
             landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "ED8E9149-74D9-424A-A666-BE3F6B559017"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "TodoApp/Controller/TodayViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "101"
-            endingLineNumber = "101"
-            landmarkName = "updateFromDetailTodoScene(_:)"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "ED8E9149-74D9-424A-A666-BE3F6B559017 - ad6d64b12308bafc"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "TodoApp.TodayViewController.todoDidUpdate(__C.UIStoryboardSegue) -&gt; ()"
-                  moduleName = "TodoApp"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/playhong16/Desktop/nbc_project/TodoApp/TodoApp/Controller/TodayViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "69"
-                  endingLineNumber = "69"
-                  offsetFromSymbolStart = "288">
-               </Location>
-               <Location
-                  uuid = "ED8E9149-74D9-424A-A666-BE3F6B559017 - ad6d64b12308ba61"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "TodoApp.TodayViewController.todoDidUpdate(__C.UIStoryboardSegue) -&gt; ()"
-                  moduleName = "TodoApp"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/playhong16/Desktop/nbc_project/TodoApp/TodoApp/Controller/TodayViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "72"
-                  endingLineNumber = "72"
-                  offsetFromSymbolStart = "292">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -520,8 +456,8 @@
             filePath = "TodoApp/Scene/TodayListCell.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "34"
-            endingLineNumber = "34"
+            startingLineNumber = "37"
+            endingLineNumber = "37"
             landmarkName = "setTodoData()"
             landmarkType = "7">
          </BreakpointContent>
@@ -536,8 +472,8 @@
             filePath = "TodoApp/Scene/TodayListCell.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "44"
-            endingLineNumber = "44"
+            startingLineNumber = "46"
+            endingLineNumber = "46"
             landmarkName = "setCompletedTodo()"
             landmarkType = "7">
          </BreakpointContent>
@@ -552,8 +488,8 @@
             filePath = "TodoApp/Scene/TodayListCell.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "55"
-            endingLineNumber = "55"
+            startingLineNumber = "56"
+            endingLineNumber = "56"
             landmarkName = "setUnCompletedTodo()"
             landmarkType = "7">
             <Locations>
@@ -600,10 +536,58 @@
             filePath = "TodoApp/Scene/TodayListCell.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "45"
-            endingLineNumber = "45"
+            startingLineNumber = "47"
+            endingLineNumber = "47"
             landmarkName = "setCompletedTodo()"
             landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "961C8D8A-3787-43EE-AF41-58DE686C65FE"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "TodoApp/Controller/DetailTodoViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "177"
+            endingLineNumber = "177"
+            landmarkName = "update(_:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "961C8D8A-3787-43EE-AF41-58DE686C65FE - 764e6883d8d3dfbf"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "TodoApp.DetailTodoViewController.update(TodoApp.Todo) -&gt; ()"
+                  moduleName = "TodoApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/playhong16/Desktop/nbc_project/%E1%84%80%E1%85%A2%E1%84%8B%E1%85%B5%E1%86%AB%E1%84%80%E1%85%AA%E1%84%8C%E1%85%A6/nbc_week3_project_main/TodoApp/Controller/DetailTodoViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "177"
+                  endingLineNumber = "177"
+                  offsetFromSymbolStart = "500">
+               </Location>
+               <Location
+                  uuid = "961C8D8A-3787-43EE-AF41-58DE686C65FE - 764e6883d8d3dfbf"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "TodoApp.DetailTodoViewController.update(TodoApp.Todo) -&gt; ()"
+                  moduleName = "TodoApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/playhong16/Desktop/nbc_project/%E1%84%80%E1%85%A2%E1%84%8B%E1%85%B5%E1%86%AB%E1%84%80%E1%85%AA%E1%84%8C%E1%85%A6/nbc_week3_project_main/TodoApp/Controller/DetailTodoViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "177"
+                  endingLineNumber = "177"
+                  offsetFromSymbolStart = "952">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
