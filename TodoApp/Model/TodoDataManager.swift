@@ -9,10 +9,16 @@ import UIKit
 
 final class TodoDataManager {
     
+    // MARK: - Type Properties
+
     static let shared = TodoDataManager()
     
+    // MARK: - Properties
+
     private let userDefaults = UserDefaults.standard
     private let key = "TodoList"
+
+    // MARK: - LifeCycle
 
     private init() {}
 
@@ -24,6 +30,8 @@ final class TodoDataManager {
         return []
     }
     
+    // MARK: - 
+
     func getComletionList() -> [Todo] {
         let completionList = getTodoList().filter { $0.isCompleted == true }
         return completionList

@@ -9,6 +9,8 @@ import UIKit
 
 final class CompletionListViewController: UIViewController {
     
+    // MARK: - Properties
+
     private let todoDataManger = TodoDataManager.shared
     
     // MARK: - Interface Builder Outlet

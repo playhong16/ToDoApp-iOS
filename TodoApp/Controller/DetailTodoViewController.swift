@@ -9,17 +9,6 @@ import UIKit
 
 final class DetailTodoViewController: UIViewController {
     
-    // MARK: - Interface Builder Outlet
-    
-    @IBOutlet var rightBarButtonItem: UIBarButtonItem!
-    @IBOutlet weak var categoryButton: UIButton!
-    @IBOutlet weak var textField: UITextField!
-    @IBOutlet weak var textView: UITextView!
-    @IBOutlet weak var highPriorityButton: UIButton!
-    @IBOutlet weak var mediumPriorityButton: UIButton!
-    @IBOutlet weak var lowPriorityButton: UIButton!
-    @IBOutlet var priorityButtons: [UIButton]!
-    
     // MARK: - Properties
     
     private let todoDataManager = TodoDataManager.shared
@@ -30,6 +19,17 @@ final class DetailTodoViewController: UIViewController {
     private lazy var priority: TodoPriority = todo?.priority ?? .medium
     private lazy var category: TodoCategory = todo?.category ?? .life
     var todo: Todo?
+    
+    // MARK: - Interface Builder Outlet
+    
+    @IBOutlet var rightBarButtonItem: UIBarButtonItem!
+    @IBOutlet weak var categoryButton: UIButton!
+    @IBOutlet weak var textField: UITextField!
+    @IBOutlet weak var textView: UITextView!
+    @IBOutlet weak var highPriorityButton: UIButton!
+    @IBOutlet weak var mediumPriorityButton: UIButton!
+    @IBOutlet weak var lowPriorityButton: UIButton!
+    @IBOutlet var priorityButtons: [UIButton]!
     
     // MARK: - Life Cycle
     
@@ -172,7 +172,7 @@ final class DetailTodoViewController: UIViewController {
         todo.title = text
         todo.textContent = textView.text
         todo.priority = self.priority
-        performSegue(withIdentifier: Identifier.UnwindSegue.updateFromDetailTodoScene, sender: todo)
+        todoDataManager.updateTodo(todo)
     }
     
     private func addTodo() {

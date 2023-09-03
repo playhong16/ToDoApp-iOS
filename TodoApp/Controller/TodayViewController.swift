@@ -9,6 +9,8 @@ import UIKit
 
 final class TodayViewController: UIViewController {
     
+    // MARK: - Properties
+
     private let todoDataManager = TodoDataManager.shared
     
     // MARK: - Interface Builder Outlet
@@ -85,17 +87,14 @@ final class TodayViewController: UIViewController {
     
     // MARK: - Unwind Segue Action
     
-    /// [DetailTodoScene] 에서 취소 버튼을 누르면 동작합니다.
     @IBAction func cancelFromDetailTodoScene(_ segue: UIStoryboardSegue) {
         dismiss(animated: true)
     }
     
-    /// [DetailTodoScene] 에서 [Todo] 객체를 새롭게 만드는 경우 동작합니다.
     @IBAction func createFromDetailTodoScene(_ segue: UIStoryboardSegue) {
         tableView.reloadData()
     }
     
-    /// [DetailTodoScene] 에서 [Todo] 객체를 업데이트하는 경우 동작합니다.
     @IBAction func updateFromDetailTodoScene(_ segue: UIStoryboardSegue) {
         tableView.reloadData()
         dismiss(animated: true)
@@ -145,6 +144,8 @@ extension TodayViewController: UITableViewDataSource {
     }
 }
 
+// MARK: - Extension
+
 // MARK: - TableView Delegate
 
 extension TodayViewController: UITableViewDelegate {
@@ -170,6 +171,8 @@ extension TodayViewController: UITableViewDelegate {
         return UISwipeActionsConfiguration(actions: [delete])
     }
 }
+
+// MARK: - TodayListCell Delegate
 
 extension TodayViewController: TodayListCellDelegate {
     func completionButtonTapped(_ todo: Todo) {
