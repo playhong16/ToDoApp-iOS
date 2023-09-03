@@ -392,8 +392,8 @@
             filePath = "TodoApp/Controller/TodayViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "151"
-            endingLineNumber = "151"
+            startingLineNumber = "153"
+            endingLineNumber = "153"
             landmarkName = "tableView(_:didSelectRowAt:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -520,8 +520,8 @@
             filePath = "TodoApp/Scene/TodayListCell.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "34"
-            endingLineNumber = "34"
+            startingLineNumber = "37"
+            endingLineNumber = "37"
             landmarkName = "setTodoData()"
             landmarkType = "7">
          </BreakpointContent>
@@ -536,8 +536,8 @@
             filePath = "TodoApp/Scene/TodayListCell.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "44"
-            endingLineNumber = "44"
+            startingLineNumber = "46"
+            endingLineNumber = "46"
             landmarkName = "setCompletedTodo()"
             landmarkType = "7">
          </BreakpointContent>
@@ -552,8 +552,8 @@
             filePath = "TodoApp/Scene/TodayListCell.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "55"
-            endingLineNumber = "55"
+            startingLineNumber = "56"
+            endingLineNumber = "56"
             landmarkName = "setUnCompletedTodo()"
             landmarkType = "7">
             <Locations>
@@ -600,8 +600,8 @@
             filePath = "TodoApp/Scene/TodayListCell.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "45"
-            endingLineNumber = "45"
+            startingLineNumber = "47"
+            endingLineNumber = "47"
             landmarkName = "setCompletedTodo()"
             landmarkType = "7">
          </BreakpointContent>

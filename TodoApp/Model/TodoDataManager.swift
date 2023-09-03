@@ -25,7 +25,7 @@ final class TodoDataManager {
     }
     
     func getComletionList() -> [Todo] {
-        var completionList = getTodoList().filter { $0.isCompleted == true }
+        let completionList = getTodoList().filter { $0.isCompleted == true }
         return completionList
     }
     
@@ -48,6 +48,21 @@ final class TodoDataManager {
     func createTodo(todo: Todo) {
         var todoList = getTodoList()
         todoList.append(todo)
+        updateUserDefaults(todoList)
+    }
+    
+    func updateTodo(_ todo: Todo) {
+        var todoList = getTodoList()
+        for oldTodo in todoList {
+            if oldTodo.date == todo.date {
+                oldTodo.title = todo.title
+                oldTodo.textContent = todo.textContent
+                oldTodo.priority = todo.priority
+                oldTodo.isCompleted = todo.isCompleted
+                oldTodo.completedTime = todo.completedTime
+                oldTodo.category = todo.category
+            }
+        }
         updateUserDefaults(todoList)
     }
 

@@ -125,12 +125,14 @@ extension TodayViewController: UITableViewDataSource {
             let todoList = todoDataManager.getLifeTodo()
             cell.todo = todoList[indexPath.row]
             cell.selectionStyle = .none
+            cell.delegate = self
             return cell
         }
         if indexPath.section == 1 {
             let todoList = todoDataManager.getWorkTodo()
             cell.todo = todoList[indexPath.row]
             cell.selectionStyle = .none
+            cell.delegate = self
             return cell
         }
         return UITableViewCell()
@@ -166,5 +168,12 @@ extension TodayViewController: UITableViewDelegate {
         delete.backgroundColor = .red
         delete.title = Title.delete
         return UISwipeActionsConfiguration(actions: [delete])
+    }
+}
+
+extension TodayViewController: TodayListCellDelegate {
+    func completionButtonTapped(_ sender: Todo) {
+        print(sender)
+        todoDataManager.updateTodo(sender)
     }
 }
