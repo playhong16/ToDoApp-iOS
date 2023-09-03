@@ -139,9 +139,16 @@ extension TodayViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let storyboard = UIStoryboard(name: "DetailTodoScene", bundle: nil)
         guard let detailViewController = storyboard.instantiateViewController(withIdentifier: "DetailTodoViewController") as? DetailTodoViewController else { return }
-        let todo = todoDataManager.getTodoList()[indexPath.row]
-        detailViewController.todo = todo
-        navigationController?.pushViewController(detailViewController, animated: true)
+        if indexPath.section == 0 {
+            let todo = todoDataManager.getLifeTodo()[indexPath.row]
+            detailViewController.todo = todo
+            navigationController?.pushViewController(detailViewController, animated: true)
+        }
+        if indexPath.section == 1 {
+            let todo = todoDataManager.getWorkTodo()[indexPath.row]
+            detailViewController.todo = todo
+            navigationController?.pushViewController(detailViewController, animated: true)
+        }
     }
     
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
