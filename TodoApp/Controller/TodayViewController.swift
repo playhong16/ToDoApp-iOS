@@ -28,6 +28,11 @@ final class TodayViewController: UIViewController {
         configureUI()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        tableView.reloadData()
+    }
+    
     // MARK: - Configure
     
     private func configureUI() {
@@ -62,43 +67,24 @@ final class TodayViewController: UIViewController {
         dateLabel.text = dateToString
     }
     
-    // MARK: - Segue
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == Identifier.Segue.toDetailSceneFromTodayScene {
-            guard let moveVC = segue.destination as? DetailTodoViewController,
-                  let todo = sender as? Todo
-            else { return }
-            moveVC.todo = todo
-        }
-        
-        if segue.identifier == Identifier.UnwindSegue.createFromDetailTodoScene {
-            guard let category = sender as? TodoCategory else { return }
-            if category == .life {
-                let row = todoDataManager.getLifeTodo().count - 1
-                tableView.insertRows(at: [IndexPath(row: row, section: 0)], with: .automatic)
+    // MARK: - Action
+
+    @IBAction func addButtonTapped(_ sender: UIButton) {
+        let storyboard = UIStoryboard(name: "DetailTodoScene", bundle: nil)
+        guard let detailViewController = storyboard.instantiateViewController(withIdentifier: "DetailTodoViewController") as? DetailTodoViewController else { return }
+        detailViewController.addButtonTapped = { category in
+            if category == TodoCategory.life {
+                let row = self.todoDataManager.getLifeTodo().count - 1
+                self.tableView.insertRows(at: [IndexPath(row: row, section: 0)], with: .automatic)
             }
-            if category == .work {
-                let row = todoDataManager.getWorkTodo().count - 1
-                tableView.insertRows(at: [IndexPath(row: row, section: 1)], with: .automatic)
+            if category == TodoCategory.work {
+                let row = self.todoDataManager.getWorkTodo().count - 1
+                self.tableView.insertRows(at: [IndexPath(row: row, section: 1)], with: .automatic)
             }
         }
+        present(detailViewController, animated: true)
     }
     
-    // MARK: - Unwind Segue Action
-    
-    @IBAction func cancelFromDetailTodoScene(_ segue: UIStoryboardSegue) {
-        dismiss(animated: true)
-    }
-    
-    @IBAction func createFromDetailTodoScene(_ segue: UIStoryboardSegue) {
-        tableView.reloadData()
-    }
-    
-    @IBAction func updateFromDetailTodoScene(_ segue: UIStoryboardSegue) {
-        tableView.reloadData()
-        dismiss(animated: true)
-    }
 }
 
 // MARK: - Extension
@@ -127,6 +113,7 @@ extension TodayViewController: UITableViewDataSource {
             cell.delegate = self
             return cell
         }
+        
         if indexPath.section == 1 {
             let todoList = todoDataManager.getWorkTodo()
             cell.todo = todoList[indexPath.row]
@@ -150,8 +137,11 @@ extension TodayViewController: UITableViewDataSource {
 
 extension TodayViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let storyboard = UIStoryboard(name: "DetailTodoScene", bundle: nil)
+        guard let detailViewController = storyboard.instantiateViewController(withIdentifier: "DetailTodoViewController") as? DetailTodoViewController else { return }
         let todo = todoDataManager.getTodoList()[indexPath.row]
-        performSegue(withIdentifier: Identifier.Segue.toDetailSceneFromTodayScene, sender: todo)
+        detailViewController.todo = todo
+        navigationController?.pushViewController(detailViewController, animated: true)
     }
     
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {

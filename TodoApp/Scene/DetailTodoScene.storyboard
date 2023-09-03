@@ -12,7 +12,7 @@
         <!--Detail Todo View Controller-->
         <scene sceneID="s0d-6b-0kx">
             <objects>
-                <viewController hidesBottomBarWhenPushed="YES" id="Y6W-OH-hqX" customClass="DetailTodoViewController" customModule="TodoApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="DetailTodoViewController" hidesBottomBarWhenPushed="YES" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Y6W-OH-hqX" customClass="DetailTodoViewController" customModule="TodoApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -90,7 +90,7 @@
                                         <barButtonItem key="leftBarButtonItem" title="취소" id="ZrS-ar-m3R">
                                             <color key="tintColor" systemColor="secondaryLabelColor"/>
                                             <connections>
-                                                <segue destination="aZG-RT-tam" kind="unwind" identifier="cancelFromDetailTodoScene" unwindAction="cancelFromDetailTodoScene:" id="zV7-Zo-xaq"/>
+                                                <action selector="cancelButtonTapped:" destination="Y6W-OH-hqX" id="J0f-Hc-4C8"/>
                                             </connections>
                                         </barButtonItem>
                                         <barButtonItem key="rightBarButtonItem" title="저장" id="PZd-Qh-PKH">
@@ -153,12 +153,9 @@
                         <outletCollection property="priorityButtons" destination="okG-TM-Gos" collectionClass="NSMutableArray" id="Ggi-hC-HFN"/>
                         <outletCollection property="priorityButtons" destination="b1K-vX-ffB" collectionClass="NSMutableArray" id="Uvb-6P-z2J"/>
                         <outletCollection property="priorityButtons" destination="UCW-bs-fmg" collectionClass="NSMutableArray" id="zL4-CQ-zia"/>
-                        <segue destination="aZG-RT-tam" kind="unwind" identifier="createFromDetailTodoScene" unwindAction="createFromDetailTodoScene:" id="lAX-Y0-2RC"/>
-                        <segue destination="aZG-RT-tam" kind="unwind" identifier="updateFromDetailTodoScene" unwindAction="updateFromDetailTodoScene:" id="Vdd-PC-VpK"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-                <exit id="aZG-RT-tam" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="-973.28244274809151" y="-291.54929577464787"/>
         </scene>

@@ -16,6 +16,7 @@ final class DetailTodoViewController: UIViewController {
         let menu = UIMenu(title: "카테고리", children: showCategoryMenu())
         return menu
     }
+    var addButtonTapped: ((TodoCategory) -> Void)?
     private lazy var priority: TodoPriority = todo?.priority ?? .medium
     private lazy var category: TodoCategory = todo?.category ?? .life
     var todo: Todo?
@@ -173,25 +174,37 @@ final class DetailTodoViewController: UIViewController {
         todo.textContent = textView.text
         todo.priority = self.priority
         todoDataManager.updateTodo(todo)
+        navigationController?.popViewController(animated: true)
     }
     
     private func addTodo() {
-        guard let text = textField.text else { return }
+        guard let text = textField.text,
+        let action = self.addButtonTapped else { return }
         let todo = Todo(title: text, textContent: textView.text, priority: self.priority, category: self.category)
         todoDataManager.createTodo(todo: todo)
-        performSegue(withIdentifier: Identifier.UnwindSegue.createFromDetailTodoScene, sender: category)
+        action(todo.category)
+        dismiss(animated: true)
     }
 
     private func setSaveButtonAction() {
-        if let todo { update(todo) }
-        else { addTodo() }
+        guard let todo else { return addTodo() }
+        update(todo)
     }
     
-    // MARK: - Button Tapped
+    // MARK: - Action
+    
+    @IBAction func cancelButtonTapped(_ sender: UIBarButtonItem) {
+        if todo == nil { dismiss(animated: true) }
+        if todo != nil { self.navigationController?.popViewController(animated: true) }
+    }
     
     @IBAction func saveButtonTapped(_ sender: UIBarButtonItem) {
         guard let isEmpty = textField.text?.isEmpty else { return }
-        isEmpty ? performSegue(withIdentifier: Identifier.UnwindSegue.cancelFromDetailTodoScene, sender: nil) : setSaveButtonAction()
+        if isEmpty {
+            navigationController?.popViewController(animated: true)
+            return
+        }
+        setSaveButtonAction()
     }
     
     // MARK: - Other
