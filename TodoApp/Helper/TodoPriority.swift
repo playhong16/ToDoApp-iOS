@@ -7,7 +7,6 @@
 
 import UIKit
 
-/// [todo] 객체의 중요도를 분류하기 위해 사용하는 타입입니다.
 enum TodoPriority: Codable {
     case high
     case medium

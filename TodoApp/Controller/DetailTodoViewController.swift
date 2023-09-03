@@ -33,7 +33,6 @@ final class DetailTodoViewController: UIViewController {
     
     // MARK: - Life Cycle
     
-    /// 뷰가 로드되면 실행됩니다.
     override func viewDidLoad() {
         super.viewDidLoad()
         configureUI()
@@ -48,7 +47,6 @@ final class DetailTodoViewController: UIViewController {
         configureTextField()
     }
 
-    /// [priorityButtons]의 기본 구성을 설정합니다.
     private func configureButton() {
         categoryButton.menu = categoryMenu
         categoryButton.layer.masksToBounds = true

@@ -172,8 +172,7 @@ extension TodayViewController: UITableViewDelegate {
 }
 
 extension TodayViewController: TodayListCellDelegate {
-    func completionButtonTapped(_ sender: Todo) {
-        print(sender)
-        todoDataManager.updateTodo(sender)
+    func completionButtonTapped(_ todo: Todo) {
+        todoDataManager.updateTodo(todo)
     }
 }

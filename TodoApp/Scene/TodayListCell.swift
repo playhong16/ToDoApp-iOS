@@ -8,7 +8,7 @@
 import UIKit
 
 protocol TodayListCellDelegate: AnyObject {
-    func completionButtonTapped(_ sender: Todo)
+    func completionButtonTapped(_ todo: Todo)
 }
 
 final class TodayListCell: UITableViewCell {
