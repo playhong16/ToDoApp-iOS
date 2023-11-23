@@ -1,4 +1,4 @@
-# nbc_week3_project
+# ToDoApp
 내일배움캠프 3, 5주차 프로젝트 - TodoApp 만들기
 
 할 일을 생성하고 관리하는 Todo App 입니다.
